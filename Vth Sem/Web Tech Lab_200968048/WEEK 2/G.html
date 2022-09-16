@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Google</title>
+		<style>
+.logo{
+    position: relative;
+    border-top: 100px solid #ea4335;
+    border-right: 100px solid #4285f4;
+    border-bottom: 100px solid #34a853;
+    border-left: 100px solid #fbbc05;
+    border-radius: 70%;
+    width: 350px;
+    height: 350px;
+    margin:  70px auto;
+}
+
+.logo::before{
+    content: "";
+    position: absolute;
+    top: 40%;
+    right: -95px;
+    transform: translateY(-50%);
+    width: 235px;
+    height: 100px;
+    background: #4285f4;
+} 
+
+.logo::after{
+    content: "";
+    position: absolute;
+    border-top: 200px solid transparent;
+    border-right: 200px solid #fff;
+    top: -100px;
+    right: -100px;
+    width: 0;
+    height: 0;
+}</style>
+  </head>
+    <body>
+        <div class="logo"></div>
+    </body>
+</html>

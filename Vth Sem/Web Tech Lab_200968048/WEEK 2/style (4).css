@@ -1,0 +1,30 @@
+#container{
+    align-content: center;
+}
+
+#c{
+    display: block;
+    font-size: 200px;
+    text-align: center;
+    position: relative;
+    top: 12px;
+    left: 6px;
+    color: blue;
+}
+#s1{    
+    position: relative;
+    font-size: 250px;
+    bottom: 118px;
+    left: 15px;
+    text-align: center;
+    color: red;
+}
+
+#s2{
+    position: relative;
+    bottom: 280px;
+    left: 15px;
+    font-size: 250px;
+    text-align: center;
+    color: darkcyan;
+}
