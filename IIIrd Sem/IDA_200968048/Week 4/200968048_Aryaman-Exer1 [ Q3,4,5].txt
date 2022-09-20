@@ -1,0 +1,303 @@
+=== Run information ===
+
+Scheme:       weka.classifiers.functions.LinearRegression -S 0 -R 1.0E-8 -additional-stats -num-decimal-places 4
+Relation:     Cereals (1)-weka.filters.unsupervised.attribute.ReplaceMissingValues-weka.filters.unsupervised.attribute.NumericToNominal-R12-13-weka.filters.unsupervised.attribute.Remove-R1-3,13-15
+Instances:    76
+Attributes:   10
+              calories
+              protein
+              fat
+              sodium
+              fiber
+              carbo
+              sugars
+              potass
+              vitamins
+              rating
+Test mode:    split 80.0% train, remainder test
+
+=== Classifier model (full training set) ===
+
+
+Linear Regression Model
+
+rating =
+
+     -0.1178 * calories +
+      2.3811 * protein +
+     -2.7549 * fat +
+     -0.0542 * sodium +
+      2.9236 * fiber +
+      0.5933 * carbo +
+     -1.281  * sugars +
+     -0.0153 * potass +
+      3.8524 * vitamins=25,0 +
+     52.5148
+
+Regression Analysis:
+
+Variable          Coefficient     SE of Coef        t-Stat
+calories             -0.1178         0.0245        -4.8181
+protein               2.3811         0.1825        13.0449
+fat                  -2.7549         0.2683       -10.2697
+sodium               -0.0542         0.0018       -30.4403
+fiber                 2.9236         0.176         16.6106
+carbo                 0.5933         0.1142         5.196 
+sugars               -1.281          0.1056       -12.1289
+potass               -0.0153         0.0058        -2.6272
+vitamins=25,0         3.8524         0.526          7.3238
+const                52.5148         1.2782        41.0843
+
+Degrees of freedom = 66
+R^2 value = 0.9936
+Adjusted R^2 = 0.9927
+F-statistic = 1133.898
+
+Time taken to build model: 0 seconds
+
+=== Evaluation on test split ===
+
+Time taken to test model on test split: 0 seconds
+
+=== Summary ===
+
+Correlation coefficient                  0.9969
+Mean absolute error                      0.874 
+Root mean squared error                  1.1161
+Relative absolute error                  8.3193 %
+Root relative squared error              8.4641 %
+Total Number of Instances               15     
+--------------------------------------------------------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------------------------------------------------
+Exer1- Q3B
+=== Run information ===
+
+Scheme:       weka.classifiers.functions.LinearRegression -S 0 -R 1.0E-8 -additional-stats -num-decimal-places 4
+Relation:     Cereals (1)-weka.filters.unsupervised.attribute.ReplaceMissingValues-weka.filters.unsupervised.attribute.NumericToNominal-R12-13-weka.filters.unsupervised.attribute.Remove-R1-3,13-15
+Instances:    76
+Attributes:   10
+              calories
+              protein
+              fat
+              sodium
+              fiber
+              carbo
+              sugars
+              potass
+              vitamins
+              rating
+Test mode:    10-fold cross-validation
+
+=== Classifier model (full training set) ===
+
+
+Linear Regression Model
+
+rating =
+
+     -0.1178 * calories +
+      2.3811 * protein +
+     -2.7549 * fat +
+     -0.0542 * sodium +
+      2.9236 * fiber +
+      0.5933 * carbo +
+     -1.281  * sugars +
+     -0.0153 * potass +
+      3.8524 * vitamins=25,0 +
+     52.5148
+
+Regression Analysis:
+
+Variable          Coefficient     SE of Coef        t-Stat
+calories             -0.1178         0.0245        -4.8181
+protein               2.3811         0.1825        13.0449
+fat                  -2.7549         0.2683       -10.2697
+sodium               -0.0542         0.0018       -30.4403
+fiber                 2.9236         0.176         16.6106
+carbo                 0.5933         0.1142         5.196 
+sugars               -1.281          0.1056       -12.1289
+potass               -0.0153         0.0058        -2.6272
+vitamins=25,0         3.8524         0.526          7.3238
+const                52.5148         1.2782        41.0843
+
+Degrees of freedom = 66
+R^2 value = 0.9936
+Adjusted R^2 = 0.9927
+F-statistic = 1133.898
+
+Time taken to build model: 0 seconds
+
+=== Cross-validation ===
+=== Summary ===
+
+Correlation coefficient                  0.9922
+Mean absolute error                      0.8775
+Root mean squared error                  1.7214
+Relative absolute error                  8.0767 %
+Root relative squared error             12.2968 %
+Total Number of Instances               76     
+
+
+=======================================================================================================================
+========================================================================================================================
+Q4:
+=== Run information ===
+
+Evaluator:    weka.attributeSelection.CfsSubsetEval -P 1 -E 1
+Search:       weka.attributeSelection.BestFirst -D 1 -N 5
+Relation:     Cereals-weka.filters.unsupervised.attribute.ReplaceMissingValues-weka.filters.unsupervised.attribute.NumericToNominal-R12,13-weka.filters.unsupervised.attribute.Remove-R1-3,5,9,11,13-15
+Instances:    76
+Attributes:   7
+              calories
+              fat
+              sodium
+              fiber
+              sugars
+              vitamins
+              rating
+Evaluation mode:    evaluate on all training data
+
+
+
+=== Attribute Selection on all input data ===
+
+Search Method:
+	Best first.
+	Start set: no attributes
+	Search direction: forward
+	Stale search after 5 node expansions
+	Total number of subsets evaluated: 29
+	Merit of best subset found:    0.915
+
+Attribute Subset Evaluator (supervised, Class (numeric): 7 rating):
+	CFS Subset Evaluator
+	Including locally predictive attributes
+
+Selected attributes: 1,2,3,4,5,6 : 6
+                     calories
+                     fat
+                     sodium
+                     fiber
+                     sugars
+                     vitamins
+
+==============================================================================================================
+==============================================================================================================
+
+Q5:
+
+=== Run information ===
+
+Scheme:       weka.classifiers.functions.LinearRegression -S 0 -R 1.0E-8 -additional-stats -num-decimal-places 4
+Relation:     Cereals (1)-weka.filters.unsupervised.attribute.ReplaceMissingValues-weka.filters.unsupervised.attribute.NumericToNominal-R12-13-weka.filters.unsupervised.attribute.Remove-R1-3,13-15-weka.filters.unsupervised.attribute.Remove-R2,6,8-9
+Instances:    76
+Attributes:   6
+              calories
+              fat
+              sodium
+              fiber
+              sugars
+              rating
+Test mode:    split 80.0% train, remainder test
+
+=== Classifier model (full training set) ===
+
+
+Linear Regression Model
+
+rating =
+
+     -3.3119 * fat +
+     -0.056  * sodium +
+      2.8371 * fiber +
+     -1.9537 * sugars +
+     62.5812
+
+Regression Analysis:
+
+Variable     Coefficient     SE of Coef        t-Stat
+fat             -3.3119         0.2861       -11.5764
+sodium          -0.056          0.0033       -17.0522
+fiber            2.8371         0.1259        22.5283
+sugars          -1.9537         0.0669       -29.1878
+const           62.5812         0.8127        77.0025
+
+Degrees of freedom = 71
+R^2 value = 0.9717
+Adjusted R^2 = 0.97013
+F-statistic = 609.9388
+
+Time taken to build model: 0 seconds
+
+=== Evaluation on test split ===
+
+Time taken to test model on test split: 0 seconds
+
+=== Summary ===
+
+Correlation coefficient                  0.9879
+Mean absolute error                      1.7739
+Root mean squared error                  2.2563
+Relative absolute error                 16.8851 %
+Root relative squared error             17.1111 %
+Total Number of Instances               15     
+
+
+----------------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------------
+Exer-5B
+=== Run information ===
+
+Scheme:       weka.classifiers.functions.LinearRegression -S 0 -R 1.0E-8 -additional-stats -num-decimal-places 4
+Relation:     Cereals (1)-weka.filters.unsupervised.attribute.ReplaceMissingValues-weka.filters.unsupervised.attribute.NumericToNominal-R12-13-weka.filters.unsupervised.attribute.Remove-R1-3,13-15-weka.filters.unsupervised.attribute.Remove-R2,6,8-9
+Instances:    76
+Attributes:   6
+              calories
+              fat
+              sodium
+              fiber
+              sugars
+              rating
+Test mode:    10-fold cross-validation
+
+=== Classifier model (full training set) ===
+
+
+Linear Regression Model
+
+rating =
+
+     -3.3119 * fat +
+     -0.056  * sodium +
+      2.8371 * fiber +
+     -1.9537 * sugars +
+     62.5812
+
+Regression Analysis:
+
+Variable     Coefficient     SE of Coef        t-Stat
+fat             -3.3119         0.2861       -11.5764
+sodium          -0.056          0.0033       -17.0522
+fiber            2.8371         0.1259        22.5283
+sugars          -1.9537         0.0669       -29.1878
+const           62.5812         0.8127        77.0025
+
+Degrees of freedom = 71
+R^2 value = 0.9717
+Adjusted R^2 = 0.97013
+F-statistic = 609.9388
+
+Time taken to build model: 0 seconds
+
+=== Cross-validation ===
+=== Summary ===
+
+Correlation coefficient                  0.983 
+Mean absolute error                      1.9868
+Root mean squared error                  2.5187
+Relative absolute error                 18.2877 %
+Root relative squared error             17.9927 %
+Total Number of Instances               76     
+
+
+

@@ -1,0 +1,127 @@
+=== Run information ===
+
+Scheme:       weka.associations.Apriori -N 5 -T 0 -C 0.7 -D 0.05 -U 1.0 -M 0.1 -S -1.0 -A -c -1
+Relation:     supermarket-weka.filters.unsupervised.attribute.Remove-R1-9,11,57,70,79-81,88-89,98,100-102,107-114,116-120,122-130,137-179,189,192-199,201-216
+Instances:    4627
+Attributes:   106
+              [list of attributes omitted]
+=== Associator model (full training set) ===
+
+
+Apriori
+=======
+
+Minimum support: 0.1 (463 instances)
+Minimum metric <confidence>: 0.7
+Number of cycles performed: 18
+
+Generated sets of large itemsets:
+
+Size of set of large itemsets L(1): 66
+
+Size of set of large itemsets L(2): 402
+
+Size of set of large itemsets L(3): 803
+
+Size of set of large itemsets L(4): 717
+
+Size of set of large itemsets L(5): 240
+
+Size of set of large itemsets L(6): 9
+
+Best rules found:
+
+1. baking needs=t biscuits=t sauces-gravy-pkle=t frozen foods=t tissues-paper prd=t 574 ==> total=high 470    conf:(0.82)
+2. bread and cake=t biscuits=t sauces-gravy-pkle=t frozen foods=t tissues-paper prd=t 600 ==> total=high 491    conf:(0.82)
+3. bread and cake=t baking needs=t sauces-gravy-pkle=t frozen foods=t tissues-paper prd=t 620 ==> total=high 506    conf:(0.82)
+4. bread and cake=t baking needs=t biscuits=t sauces-gravy-pkle=t tissues-paper prd=t 595 ==> total=high 483    conf:(0.81)
+5. bread and cake=t biscuits=t sauces-gravy-pkle=t tissues-paper prd=t vegetables=t 583 ==> total=high 469    conf:(0.8)
+
+
+===================================================
+===================================================
+Q3:
+bread and cake
+fruits
+vegetables
+milk cream
+baking needs
+
+===================================================
+====================================================
+Q4:
+=== Run information ===
+
+Scheme:       weka.associations.Apriori -N 5 -T 0 -C 0.9 -D 0.05 -U 1.0 -M 0.1 -S -1.0 -c -1
+Relation:     supermarket-weka.filters.unsupervised.attribute.Remove-R1-9,11,57,70,79-81,88-89,98,100-102,107-114,116-120,122-130,137-179,189,192-199,201-216
+Instances:    4627
+Attributes:   106
+              [list of attributes omitted]
+=== Associator model (full training set) ===
+
+
+Apriori
+=======
+
+Minimum support: 0.15 (694 instances)
+Minimum metric <confidence>: 0.9
+Number of cycles performed: 17
+
+Generated sets of large itemsets:
+
+Size of set of large itemsets L(1): 41
+
+Size of set of large itemsets L(2): 347
+
+Size of set of large itemsets L(3): 855
+
+Size of set of large itemsets L(4): 617
+
+Size of set of large itemsets L(5): 105
+
+Size of set of large itemsets L(6): 1
+
+Best rules found:
+
+1. biscuits=t frozen foods=t fruit=t total=high 788 ==> bread and cake=t 723    <conf:(0.92)> lift:(1.27) lev:(0.03) [155] conv:(3.35)
+2. baking needs=t biscuits=t fruit=t total=high 760 ==> bread and cake=t 696    <conf:(0.92)> lift:(1.27) lev:(0.03) [149] conv:(3.28)
+3. baking needs=t frozen foods=t fruit=t total=high 770 ==> bread and cake=t 705    <conf:(0.92)> lift:(1.27) lev:(0.03) [150] conv:(3.27)
+4. biscuits=t fruit=t vegetables=t total=high 815 ==> bread and cake=t 746    <conf:(0.92)> lift:(1.27) lev:(0.03) [159] conv:(3.26)
+5. party snack foods=t fruit=t total=high 854 ==> bread and cake=t 779    <conf:(0.91)> lift:(1.27) lev:(0.04) [164] conv:(3.15)
+
+=========================================================
+============================================================
+
+Q5:
+=== Run information ===
+
+Scheme:       weka.associations.Apriori -N 5 -T 0 -C 0.1 -D 0.05 -U 1.0 -M 0.001 -S -1.0 -c -1
+Relation:     supermarket-weka.filters.unsupervised.attribute.Remove-R10,12-56,58-69,71-78,82-87,90-97,99,103-106,115,121,131-136,180-188,190-191,200,217
+Instances:    4627
+Attributes:   111
+              [list of attributes omitted]
+=== Associator model (full training set) ===
+
+
+Apriori
+=======
+
+Minimum support: 0.05 (236 instances)
+Minimum metric <confidence>: 0.1
+Number of cycles performed: 19
+
+Generated sets of large itemsets:
+
+Size of set of large itemsets L(1): 5
+
+Size of set of large itemsets L(2): 3
+
+Best rules found:
+
+1. department122=t 1112 ==> department137=t 549    <conf:(0.49)> lift:(1.23) lev:(0.02) [103] conv:(1.18)
+2. department1=t 1047 ==> department137=t 454    <conf:(0.43)> lift:(1.08) lev:(0.01) [34] conv:(1.06)
+3. department137=t 1854 ==> department122=t 549    <conf:(0.3)> lift:(1.23) lev:(0.02) [103] conv:(1.08)
+4. department1=t 1047 ==> department122=t 288    <conf:(0.28)> lift:(1.14) lev:(0.01) [36] conv:(1.05)
+5. department122=t 1112 ==> department1=t 288    <conf:(0.26)> lift:(1.14) lev:(0.01) [36] conv:(1.04)
+
+
