@@ -1,0 +1,319 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  padding: 0%;
+  margin: 0%;
+  overflow: hidden;
+}
+
+.container {
+  position: relative;
+}
+.container .road1 {
+  display: flex;
+  left: 50%;
+  transform: translate(-50%, 0);
+  position: relative;
+  background: black;
+  width: 300px;
+  height: 800px;
+  z-index: 1;
+}
+.container .road1 .lane1 {
+  width: 50%;
+  height: 100%;
+  position: relative;
+  border-right: 5px dashed white;
+}
+.container img {
+  position: absolute;
+  display: block;
+  z-index: 3;
+  background-color: chocolate;
+}
+.container #amb {
+  left: 44%;
+  -webkit-animation: road1-move 7s linear 1;
+          animation: road1-move 7s linear 1;
+}
+.container #car {
+  left: 53.5%;
+  -webkit-animation: road1-move 8s linear 1;
+          animation: road1-move 8s linear 1;
+  -webkit-animation-delay: 3s;
+          animation-delay: 3s;
+}
+.container #car3 {
+  top: 25%;
+  -webkit-animation: road2-move 15s linear 1;
+          animation: road2-move 15s linear 1;
+  -webkit-animation-fill-mode: forwards;
+          animation-fill-mode: forwards;
+}
+.container #amb2 {
+  top: 45%;
+  -webkit-animation-delay: 4s;
+          animation-delay: 4s;
+  -webkit-animation: road2-move 7s linear 1;
+          animation: road2-move 7s linear 1;
+  -webkit-animation-fill-mode: forwards;
+          animation-fill-mode: forwards;
+}
+.container .road2 {
+  position: absolute;
+  top: 300px;
+  transform: translate(0, -50%);
+  background: black;
+  width: 100%;
+  height: 300px;
+  z-index: 0;
+}
+.container .road2 .lane1 {
+  width: 100%;
+  height: 50%;
+  position: absolute;
+  border-bottom: 5px dashed white;
+}
+.container .road2 .lane1 img {
+  transform: scale(-1, 1);
+}
+.container .center {
+  position: absolute;
+  top: 37%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  height: 300px;
+  width: 300px;
+  background: black;
+  z-index: 1;
+  -webkit-backface-visibility: hidden;
+          backface-visibility: hidden;
+}
+.container .signal1 {
+  position: absolute;
+  width: 120px;
+  height: 50px;
+  top: 12%;
+  left: 32%;
+  background-color: black;
+  z-index: 2;
+}
+.container .signal1 .cir {
+  position: absolute;
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+}
+.container .signal1 #cir1 {
+  background-color: darkred;
+  top: 20%;
+  left: 8%;
+  -webkit-animation: light-red 8s step-end 1;
+          animation: light-red 8s step-end 1;
+  -webkit-animation-fill-mode: forwards;
+          animation-fill-mode: forwards;
+}
+.container .signal1 #cir2 {
+  background-color: darkorange;
+  top: 20%;
+  left: 38%;
+}
+.container .signal1 #cir3 {
+  background-color: darkgreen;
+  top: 20%;
+  left: 68%;
+  -webkit-animation: light-green 8s step-end 1;
+          animation: light-green 8s step-end 1;
+  -webkit-animation-fill-mode: forwards;
+          animation-fill-mode: forwards;
+}
+.container .signal2 {
+  position: absolute;
+  width: 50px;
+  height: 120px;
+  top: 3%;
+  left: 60%;
+  background-color: black;
+  z-index: 2;
+}
+.container .signal2 .cir {
+  position: absolute;
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+}
+.container .signal2 #cir1 {
+  background-color: darkred;
+  top: 8%;
+  left: 20%;
+  -webkit-animation: light-red2 8s step-end 1;
+          animation: light-red2 8s step-end 1;
+  -webkit-animation-fill-mode: forwards;
+          animation-fill-mode: forwards;
+}
+.container .signal2 #cir2 {
+  background-color: darkorange;
+  top: 38%;
+  left: 20%;
+}
+.container .signal2 #cir3 {
+  background-color: darkgreen;
+  top: 68%;
+  left: 20%;
+  -webkit-animation: light-green2 8s step-end 1;
+          animation: light-green2 8s step-end 1;
+  -webkit-animation-fill-mode: forwards;
+          animation-fill-mode: forwards;
+}
+
+@-webkit-keyframes road1-move {
+  from {
+    top: -10%;
+  }
+  to {
+    top: 100%;
+  }
+}
+
+@keyframes road1-move {
+  from {
+    top: -10%;
+  }
+  to {
+    top: 100%;
+  }
+}
+@-webkit-keyframes road2-move {
+  0% {
+    left: -10%;
+  }
+  35% {
+    left: 35%;
+  }
+  65% {
+    left: 35%;
+  }
+  100% {
+    left: 100%;
+  }
+}
+@keyframes road2-move {
+  0% {
+    left: -10%;
+  }
+  35% {
+    left: 35%;
+  }
+  65% {
+    left: 35%;
+  }
+  100% {
+    left: 100%;
+  }
+}
+@-webkit-keyframes light-green {
+  0% {
+    background-color: greenyellow;
+  }
+  50% {
+    background-color: darkgreen;
+  }
+  100% {
+    background-color: greenyellow;
+  }
+}
+@keyframes light-green {
+  0% {
+    background-color: greenyellow;
+  }
+  50% {
+    background-color: darkgreen;
+  }
+  100% {
+    background-color: greenyellow;
+  }
+}
+@-webkit-keyframes light-green2 {
+  0% {
+    background-color: darkgreen;
+  }
+  50% {
+    background-color: greenyellow;
+  }
+  100% {
+    background-color: darkgreen;
+  }
+}
+@keyframes light-green2 {
+  0% {
+    background-color: darkgreen;
+  }
+  50% {
+    background-color: greenyellow;
+  }
+  100% {
+    background-color: darkgreen;
+  }
+}
+@-webkit-keyframes light-red {
+  0% {
+    background-color: darkred;
+  }
+  50% {
+    background-color: red;
+  }
+  100% {
+    background-color: darkred;
+  }
+}
+@keyframes light-red {
+  0% {
+    background-color: darkred;
+  }
+  50% {
+    background-color: red;
+  }
+  100% {
+    background-color: darkred;
+  }
+}
+@-webkit-keyframes light-red2 {
+  0% {
+    background-color: red;
+  }
+  50% {
+    background-color: darkred;
+  }
+  100% {
+    background-color: red;
+  }
+}
+@keyframes light-red2 {
+  0% {
+    background-color: red;
+  }
+  50% {
+    background-color: darkred;
+  }
+  100% {
+    background-color: red;
+  }
+}
+@-webkit-keyframes road2-move-direct {
+  0% {
+    left: -10%;
+  }
+  100% {
+    left: 100%;
+  }
+}
+@keyframes road2-move-direct {
+  0% {
+    left: -10%;
+  }
+  100% {
+    left: 100%;
+  }
+}/*# sourceMappingURL=traffic_signal.css.map */
