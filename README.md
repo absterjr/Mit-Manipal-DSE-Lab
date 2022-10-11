@@ -2,7 +2,7 @@
 
 This repository contains all the labs conducted by MIT Manipal, for the branch of Data Science(Batch of '24)
 
-## III Sem Labs
+## IIIrd Sem Labs
 
 This folder contains programs and notebooks of 3rd Sem Labs:
 
