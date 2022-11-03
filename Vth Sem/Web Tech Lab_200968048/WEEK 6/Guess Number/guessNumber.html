@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+        <link rel="stylesheet" href="guessNumber.css" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap"
+            rel="stylesheet"
+        />
+    </head>
+    <body>
+        <h1 align = "center">Welcome to Guess the Number</h1>
+        <h4>Try Out Your Luck!</h4>
+        <div class="container">
+            <h1> Guess The Number(1-100)</h1>
+            <input type="text" placeholder="" id="guess" /><br />
+            <button onclick="play()" id="my_btn">GUESS</button>
+            <p id="message1">No. of Guesss : 0</p>
+            <p id="message2">Guessed Numbers: none</p>
+            <p id="message3"></p>
+        </div>
+        <script src="guessNumber.js"></script>
+    </body>
+</html>

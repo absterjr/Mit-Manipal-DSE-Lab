@@ -1,0 +1,136 @@
+<title> Passport Form </title>
+<form text-align = "center" align = "center" method="post">
+<table cellpadding="3" cellspacing="0" width="100%" align="center" role="presentation">
+<tr><td colspan="3"></td>
+</tr><tr><td colspan="2">
+<fieldset style="display:inline; border:none;">
+<legend style="width:164px;float:left;text-align:left;margin-left:-2px;color:#000;">
+Register to apply at<span class="mandatory">*</span></legend>
+<span style="float:left; width:150px; margin: -15px 0 0 40px;">
+<br><input type="radio" name="cpvLocation" id="cpvLocation13" value="13" >
+<label for="cpvLocation13">CPV Delhi</label>
+<br><input type="radio" name="cpvLocation" id="cpvLocationPO" checked="checked" value="PO" >
+<label for="cpvLocationPO">Passport Office</label>
+</fieldset></td></tr><tr><td width="30%">
+<span style="display: block;">
+<label for="dcdrLocation">Passport Office <span class="mandatory">*</span></label>&nbsp;</span></td><td>            
+<select name="dcdrLocation" id="dcdrLocation" class="dropdown-box" aria-describedby="tibDesc" aria-required="true">
+ <option value="">----- Select -----</option>
+<option value="1">Ahmedabad</option>
+<option value="2">Amritsar</option>
+<option value="4">Bareilly</option>
+<option value="5">Bengaluru</option>
+<option value="7">Bhopal</option>
+<option value="3">Bhubaneswar</option>
+<option value="10">Chandigarh</option>
+<option value="26">Chennai</option>
+<option value="11">Cochin</option>
+<option value="9">Coimbatore</option>
+<option value="14">Dehradun</option>
+<option value="15">Delhi</option>
+<option value="18">Ghaziabad</option>
+<option value="16">Goa</option>
+<option value="17">Guwahati</option>
+<option value="19">Hyderabad</option>
+<option value="23">Jaipur</option>
+<option value="21">Jalandhar</option>
+<option value="22">Jammu</option>
+<option value="8">Kolkata</option>
+<option value="24">Kozhikode</option>
+<option value="25">Lucknow</option>
+<option value="27">Madurai</option>
+<option value="6">Mumbai</option>
+<option value="29">Nagpur</option>
+<option value="30">Patna</option>
+<option value="31">Pune</option>
+<option value="33">Raipur</option>
+<option value="32">Ranchi</option>
+<option value="35">Shimla</option>
+<option value="34">Srinagar</option>
+<option value="36">Surat</option>
+<option value="38">Tiruchirappalli</option>
+<option value="39">Trivandrum</option>
+<option value="321">Vijayawada</option>
+<option value="40">Visakhapatnam</option>
+</select></td>
+<td style="font-size: 10px;">Tibetan Refugees applying for Identity Certificate must register with 'Delhi' Passport Office.</td>
+</tr><tr><td width="30%">
+<label for="givenName">Given Name&nbsp;<span class="mandatory">*</span></label></td>
+<td width="27%">
+<input type="text" name="givenName" maxlength="45" value="" id="givenName" class="txtbox" aria-describedby="nameDesc" aria-required="true"/>
+<div id="wwgrp_givenName" class="wwgrp">
+<div></div> </div><td style="font-size: 10px;">
+<strong>First Name + Middle Name</strong>
+<br>Initials and honorifics (e.g. Dr.,Col.,etc.) are not allowed.</td>
+</tr><tr>
+<td><label for="surname">Surname&nbsp;<span style ="font-size:10px">(Max 45 Characters)</span>
+</label></td>
+<td colspan="2">
+<input type="text" name="surname" maxlength="45" value="" id="surname" class="txtbox" aria-describedby="surnameDesc"/>
+<div id="wwgrp_surname" class="wwgrp"><div></div> </div>
+<span class="hide" id="surnameDesc"></span></td></tr><tr>
+<td><label for="dob">Date of Birth (DD/MM/YYYY)<span class="mandatory">*</span>
+</label></td><td colspan="2">
+<input type="text" name="dob" maxlength="10" value="DD/MM/YYYY" id="dob" class="txtbox" onfocus="this.style.color='#000000'" aria-describedby="dateformatDesc" aria-required="true"/>
+<div id="wwgrp_dob" class="wwgrp">
+</div></td></tr><tr>
+<td><label for="email">E-mail Id<span style="font-size:10px">&nbsp;(Max 35 Characters)</span>
+<span class="mandatory">*</span></label></td><td colspan="2">
+<input type="text" name="email" maxlength="35" value="" id="email" class="txtbox" aria-describedby="emailError" aria-required="true"/>
+<div id="wwgrp_email" class="wwgrp"><div></div> </div>
+<span class="hide" id="emailError"></span></td>
+</tr><tr><td colspan="3">
+<fieldset style="display:inline; border:none;">
+<legend style="line-height:15px;float:left;text-align:right;margin-left:-2px;color:#000;">Do you want your Login Id<br>to be same as E-mail Id?</legend>
+<span style="float:left;width:150px;margin: 0 0 0 67px">
+<input type="radio" name="emailloginSame" id="emailloginSameyes" value="yes">
+<label for="emailloginSameyes">Yes</label>
+<input type="radio" name="emailloginSame" id="emailloginSameno" checked="checked" value="no"><label for="emailloginSameno">No</label>
+<div><div></div> </div></span>	
+<span class="hide" id="emailloginSameError">
+</span></fieldset></td></tr><tr>
+<td><label for="loginId">Login Id<span class="mandatory">*</span>
+</label></td><td>
+<input type="text" name="loginId" maxlength="35" value="" id="loginId" class="txtbox" aria-describedby="loginIdError" aria-required="true"/>
+<div id="wwgrp_loginId" class="wwgrp"></div>
+<span class="mandatory"></span><span class="success"></span>
+<span class="hide" id="loginIdError"></span></td><td>
+<a href="" title="Check Availability" >Check Availability</a>
+</td></tr><tr>
+<td><label for="pwd">Password<span class="mandatory">*</span>
+</label></td><td>
+<input type="password" name="pwd" maxlength="14" id="pwd" class="txtbox" aria-describedby="pwdError" aria-required="true"/><div id="wwgrp_pwd" class="wwgrp">
+<div id="wwctrl_pwd" class="wwctrl"></div> </div>
+<span class="hide" id="pwdError"></span>
+</td><td><a href="">Password Policy</a></td></tr><tr>
+<td><label for="confirmPwd">Confirm Password<span class="mandatory">*</span>
+</label></td><td colspan="2">
+<input type="password" name="confirmPwd" maxlength="14" id="confirmPwd" class="txtbox" aria-describedby="confirmPwdError" aria-required="true"/><div id="wwgrp_confirmPwd" class="wwgrp"></div>
+<span class="hide" id="confirmPwdError"></span></td></tr><tr>
+<td><label for="hintQues">Hint Question<span class="mandatory">*</span>
+</label></td><td colspan="2">
+<select name="hintQues" id="hintQues" class="dropdown-box" aria-describedby="hintQuesError" aria-required="true">
+ <option value="">----- Select -----</option>
+<option value="Birth City">Birth City</option><option value="Colour">Favourite Colour</option>
+<option value="Favourite Cricketer">Favourite Cricketer</option>
+<option value="Favourite Food">Favourite Food</option>
+<option value="First School">First School</option>
+<option value="Make of First car Owned">Make of First car Owned</option>
+<option value="Mother's Maiden Name">Mother's Maiden Name</option>
+</select>
+<span class="hide" id="hintQuesError"></span> </td></tr><tr>
+<td><label for="hintAns">Hint Answer<span class="mandatory">*</span></label>
+</td><td colspan="2">
+<input type="password" name="hintAns" maxlength="35" id="hintAns" class="txtbox" title="Hint Answer will be required for password recovery, if you forget your password." aria-describedby="hintAnsError" aria-required="true"/><div id="wwgrp_hintAns" class="wwgrp">
+<div></div> </div><span class="hide" id="hintAnsError"></span></td></tr>
+<tr><td>&nbsp;</td>
+<div></div> </div><span class="hide" id="testError"></span></td><tr><td>Captcha*<td><div><div>
+<canvas id="captcha">captcha text</canvas><input id="textBox" type="text" name="text">
+<div id="buttons"><input id="submitButton" type="submit">
+<button id="refreshButton" type="submit">Refresh</button>
+</div><span id="output"></span></div></div>
+<script src="script.js"></script></td></td>
+</tr></tr></table>
+<div class="buttons" style="margin-top: 20px;">
+<input type="submit" id="frmSample_register" name="register" value="Register" class="bt">
+<input type="submit" id="frmSample_clear" value="Clear" class="bt"/></div></form>
