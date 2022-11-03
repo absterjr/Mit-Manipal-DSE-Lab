@@ -1,0 +1,8 @@
+[
+    {"name":"Josh","age":"33","gender":"male","education":"B.Tech","occupation":"software engg"},
+    {"name":"Selena","age":"29","gender":"female","education":"B.E","occupation":"project manager"},
+    {"name":"Jerry","age":"31","gender":"male","education":"M.Tech","occupation":"project advisor"},
+    {"name":"Trisha","age":"30","gender":"female","education":"M.sc","occupation":"software engg"},
+    {"name":"Reena","age":"27","gender":"female","education":"M.Tech","occupation":"project manager"},
+    {"name":"Robert","age":"35","gender":"male","education":"M.sc","occupation":"senior advisor"}
+]

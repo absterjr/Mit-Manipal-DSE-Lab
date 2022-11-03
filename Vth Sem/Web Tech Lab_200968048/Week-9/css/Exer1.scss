@@ -1,0 +1,53 @@
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+body{
+    background: honeydew;
+    margin-top: 50px;
+}
+.container{
+    position: absolute;
+    width: 100%;
+    text-align: center;
+    margin: .5em;
+}
+p.message{
+    position: absolute;
+    font-size: 2em;
+    color: darkblue;
+    width: 100%;
+    height: 40px;
+}
+form{
+    left: 20%;
+    position: absolute;
+    display: grid;
+    width: 50%;
+    height: 150px;
+    background: aquamarine;
+    // text-align: center;
+}
+.entry{
+    display: flex;
+    position: absolute;
+    width: 100%;
+    height: 100px;
+    padding: 10px;
+    justify-content: space-between;
+    align-items: center;
+    // input{
+    //     float: right;
+    // }
+}
+
+.submit{
+    width: 60px;
+    height: 40px;
+    position: absolute;
+    display: block;
+    bottom: 10%;
+    left: 50%;
+    font-weight: 400;
+}
