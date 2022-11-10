@@ -1,0 +1,61 @@
+// JS Program to store multiple cookies and display them. 
+// To run turn on the live server(GO Live) in VS Code.
+<html>
+<head></head>
+<body>
+    <table border="1">
+        <tr>
+            <td>Name</td>
+            <td><input type="text" id="txtName" /></td>
+        </tr>
+        <tr>
+            <td>Email</td>
+            <td><input type="text" id="txtEmail" /></td>
+        </tr>
+        <tr>
+            <td>Gender</td>
+            <td><input type="text" id="txtGender" /></td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                <input type="button" value="Set Cookie" onclick="setCookie()" />
+                <input type="button" value="Get Cookie" onclick="getCookie()" />
+                <input type="button" value="Clear" onclick="clearTextBoxes()" />
+            </td>
+        </tr>
+    </table>
+    <script type="text/javascript">
+function setCookie()
+{
+
+  var object1 = {};
+  object1.name = document.getElementById("txtName").value;
+  object1.class = document.getElementById("txtEmail").value;
+  object1.subject = document.getElementById("txtGender").value;
+
+    var jsonString = JSON.stringify(object1);
+
+    document.cookie = jsonString;
+}
+
+
+function getCookie()
+{
+    if (document.cookie.length != 0) {
+    var obj = JSON.parse(document.cookie);
+    alert("FullName=" + obj.name + " " + "Email=" + obj.class + " " + "Gender=" + obj.subject);
+    }
+  else {
+    alert("Cookie not available");
+    }
+}
+
+        function clearTextBoxes()
+        {
+            document.getElementById("txtName").value = "";
+            document.getElementById("txtEmail").value = "";
+            document.getElementById("txtGender").value = "";
+        }
+    </script>
+</body>
+</html>
