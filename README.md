@@ -15,7 +15,7 @@ This folder contains programs and notebooks of 3rd Sem Labs:
 
 This folder contains programs and notebooks of 4th Sem Labs:
 
-- [Machine Learning)](https://github.com/absterjr/Mit-Manipal-DSE-Lab/tree/main/IVth%20Sem/Machine%20Learning)
+- [Machine Learning](https://github.com/absterjr/Mit-Manipal-DSE-Lab/tree/main/IVth%20Sem/Machine%20Learning)
 - [DBMS](https://github.com/absterjr/Mit-Manipal-DSE-Lab/tree/main/IVth%20Sem/DBMS)
 
 
