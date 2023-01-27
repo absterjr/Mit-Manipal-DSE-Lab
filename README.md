@@ -23,6 +23,6 @@ This folder contains programs and notebooks of 4th Sem Labs:
 
 This folder contains programs and notebooks for the Vth Sem Labs:
 
-- [Operating Systems](https://github.com/absterjr/Mit-Manipal-DSE-Lab/tree/main/Vth%20Sem/OS_200968048)
-- [Web Technologies](https://github.com/absterjr/Mit-Manipal-DSE-Lab/tree/main/Vth%20Sem/Web%20Tech%20Lab_200968048)
-- [Deep Learning](https://github.com/absterjr/Mit-Manipal-DSE-Lab/tree/main/Vth%20Sem/DL_200968048)
+- [Operating Systems(C)](https://github.com/absterjr/Mit-Manipal-DSE-Lab/tree/main/Vth%20Sem/OS_200968048)
+- [Web Technologies(HTML,CSS,JS & PHP)](https://github.com/absterjr/Mit-Manipal-DSE-Lab/tree/main/Vth%20Sem/Web%20Tech%20Lab_200968048)
+- [Deep Learning(Python)](https://github.com/absterjr/Mit-Manipal-DSE-Lab/tree/main/Vth%20Sem/DL_200968048)
