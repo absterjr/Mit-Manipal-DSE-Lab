@@ -11,6 +11,14 @@ This folder contains programs and notebooks of 3rd Sem Labs:
 - [IDA(Python)](https://github.com/absterjr/Mit-Manipal-DSE-Lab/tree/main/IIIrd%20Sem/IDA_200968048)
 
 
+## IVth Sem Labs
+
+This folder contains programs and notebooks of 4th Sem Labs:
+
+- [Machine Learning(Python)](https://github.com/absterjr/Mit-Manipal-DSE-Lab/tree/main/IVth%20Sem/Machine%20Learning)
+- [DBMS(SQL)](https://github.com/absterjr/Mit-Manipal-DSE-Lab/tree/main/IVth%20Sem/DBMS)
+
+
 ## Vth Sem Labs
 
 This folder contains programs and notebooks for the Vth Sem Labs:
