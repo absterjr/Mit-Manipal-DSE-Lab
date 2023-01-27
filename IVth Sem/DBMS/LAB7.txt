@@ -1,0 +1,165 @@
+7.1]
+create table account(
+account_number number(10),
+balance number(10,3) check(balance > 1000));
+
+insert into account values(100, 2000);
+insert into account values(200, 4000);
+insert into account values(300, 6000);
+insert into account values(400, 8000);
+insert into account values(500, 10000);
+
+create or replace procedure withdraw(user_account IN number, withdrawal IN number) as
+	left_balance account.balance%type;
+	curr_balance account.balance%type; 
+BEGIN 
+	select balance into curr_balance from account where account_number = user_account;
+	left_balance := curr_balance - withdrawal;
+	IF left_balance > 1000 THEN
+		update account set balance = left_balance where account_number = user_account;
+		DBMS_OUTPUT.PUT_LINE('Current Balance: ' || curr_balance);
+		DBMS_OUTPUT.PUT_LINE('Withdrawal of ' || withdrawal || ' is successful');
+		DBMS_OUTPUT.PUT_LINE('Updated Current Balance: ' || left_balance);
+	ELSE
+		DBMS_OUTPUT.PUT_LINE('Current Balance: ' || curr_balance);
+		DBMS_OUTPUT.PUT_LINE('Insufficient fund to withdraw, try a lesser amount');
+	END IF;
+END withdraw;
+/
+
+DECLARE
+	user_account account.account_number%type;
+	withdrawal account.balance%type;
+BEGIN
+	user_account := &user_account;
+	withdrawal := &withdrawal;
+	withdraw(user_account, withdrawal);
+END;
+/
+
+7.2]
+create or replace procedure valid_emp(skill_input IN varchar2, skill_exp_input IN number) as
+	cursor v_skill is select s.skillid, s.skillname, es.skill_experience, es.empno from skill s, emp_skill es where
+	s.skillid = es.skillid and skillname = skill_input;
+	v_name emp.name%type;
+BEGIN
+	for e in v_skill 
+	loop 
+		if(e.skill_experience > skill_exp_input) then
+			select name into v_name from emp where empcode = e.empno;
+			dbms_output.put_line('Valid employee:' || v_name);
+		end if;
+	end loop;
+END valid_emp;
+/ 
+
+DECLARE
+	skill_input skill.skillname%type;
+	skill_exp_input emp_skill.skill_experience%type;
+BEGIN
+	skill_input := '&skill_input';
+	skill_exp_input := &skill_exp_input;	
+	valid_emp(skill_input, skill_exp_input);
+END;
+/
+
+7.3]
+create or replace procedure calc_expense(v_prjid IN char, add_budget OUT number) as
+	v_prj_details prj_details%rowtype;
+	extra_days number(4);
+	day_cost number(9,2);
+BEGIN
+	select * into v_prj_details from prj_details where prjid = v_prjid;
+	extra_days := v_prj_details.actual_end_date - v_prj_details.end_date;
+	day_cost := v_prj_details.budget_allocated / (v_prj_details.end_date - v_prj_details.start_date);
+	add_budget := extra_days * day_cost;
+END calc_expense;
+/
+
+DECLARE
+	v_prjid prj_details.prjid%type;
+	v_empcode emp.empcode%type;
+	v_emp emp%rowtype;
+	add_budget prj_details.budget_allocated%type := 0;
+BEGIN
+	v_prjid := '&v_prjid';
+
+	calc_expense(v_prjid, add_budget);
+	select lead_by_empcode into v_empcode from prj_details where 
+	prjid = v_prjid;
+	select * into v_emp from emp where empcode = v_empcode;
+	dbms_output.put_line('Name of Project Leader: ' || v_emp.name);
+	select * into v_emp from emp where empcode = v_emp.reports_to;
+	dbms_output.put_line('Name and email of employee to whom projects leader reports to: ' || v_emp.name 
+	|| ' ' || v_emp.email);
+	dbms_output.put_line('Additional Budget Needed: ' || add_budget);
+END;
+/
+
+7.4]
+create or replace function tot_incentive(v_prjid IN char) return number as
+	total number(10) := 0;
+	cursor v_work_exp is select rating from work_exp where prjid = v_prjid;	
+	v_rating work_exp.rating%type;
+BEGIN
+	open v_work_exp;
+	loop
+		fetch v_work_exp into v_rating;
+		exit when v_work_exp%notfound; 
+		case v_rating
+			when 'A' then total := total + 30000;
+			when 'B' then total := total + 20000;
+			when 'C' then total := total + 10000;
+		end case;
+	end loop;
+	close v_work_exp; 
+	RETURN total;
+END tot_incentive;
+/
+
+DECLARE
+	v_prjid prj_details.prjid%type;
+	total number(10);
+BEGIN
+	v_prjid := '&v_prjid';
+	total := tot_incentive(v_prjid);
+	dbms_output.put_line('The total incentive is: ' || total);
+END;
+/
+
+7.5]
+create or replace procedure find_phone(code IN varchar) is
+	cursor v_client is select * from client;
+BEGIN
+	for c in v_client
+	loop
+		if substr(c.phone, 1, 3) = trim(code) then	
+			dbms_output.put_line('Client name: ' || c.name);
+		end if;
+	end loop;
+END;
+/
+
+DECLARE
+	code client.phone%type;
+BEGIN 
+	code := '&code';
+	find_phone(code);
+END;
+/
+
+7.6]
+create or replace procedure gen_email as 
+	cursor v_emp is select * from emp;
+BEGIN
+	for e in v_emp 
+	loop
+		dbms_output.put_line('Email address of ' || e.name || ' is: ' ||
+		e.name || '_' || e.empcode || '@digisol.com');
+	end loop;
+END;
+/
+
+exec gen_email;
+
+7.7]

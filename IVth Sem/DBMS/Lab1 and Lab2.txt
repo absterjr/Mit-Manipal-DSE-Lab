@@ -1,0 +1,377 @@
+--Lab 1 DBMS
+
+--create table emp(empcode number(3) CONSTRAINT PK_empno PRIMARY KEY, 
+--name varchar2(10),
+--qualification varchar2(10) CONSTRAINT Valid_Qualif check (qualification IN ('BTECH','MTECH','MSC','MCA','PHD')),
+--phone number(10),
+--email varchar2(20) CONSTRAINT Email_Domain check (email Like '%@digisol.com'),
+--designation varchar2(20) CONSTRAINT Valid_Designation check( designation IN('DEVELOPER','PROJEACT LEADER','PROJECT MANAGER','TECHNICAL HEAD','PROJECT DIRECTOR','PROJECT LEADER','CEO')),
+--salary number(7) CONSTRAINT Salary_Range check(salary between 97000 AND 300000));
+
+--create table prj_details( prjid char(3) CONSTRAINT PK_Prjid PRIMARY KEY check( prjid Like 'p%'),
+--prj_name varchar2(10),
+--start_date Date,
+--end_date Date,
+--actual_end_date Date ,
+--lead_by_empcode number(3) CONSTRAINT FK_Lead_Emp references emp,
+--budget_allocated number(10,1),
+--actual_budget number(10,1),
+--CONSTRAINT End_Date_Garter_Start_Date check (end_date>start_date),
+--check (actual_end_date>=end_date)); 
+
+
+-- create table FAMILY_DEPENDENTS( empno number(3) references emp,
+-- dep_name varchar(20),
+-- relationship varchar(16),
+-- age number(3) constraint valid_age check (age between 1 and 130),
+-- primary key(empno,dep_name));
+
+ 
+-- create table MEDICAL_POLICY(
+ --EMPNO Number(3) CONSTRAINT FK_EMPNO_MED_POL references EMP,
+--POLICYNO varchar2(5) CONSTRAINT POLICYNO_STARTS_WITH_MED check(POLICYNO LIKE'MED%'),
+--PREMIUM Number(4) CONSTRAINT PREMIUM_GREATER_THAN_0 check(PREMIUM>0),
+-- POLICYDATE date,
+--CONSTRAINT PK_EMPNO_POLICYNO Primary Key(EMPNO,POLICYNO));
+
+-- create table pay_check(empcode number(3) references emp,
+-- pay_date date,
+-- regular_increment number(4) constraint valid_regu_incentive check (regular_increment in('2000','3000','5000','7000','9000')),
+-- performance_incentive number(5),
+-- da number(7),
+-- pf number(6),
+-- other_incentives number(4),
+-- advance_tax number(5),
+-- primary key (empcode,pay_date));
+
+
+-- create table skill(skillid char(3) constraint unq_skillid primary key ,
+-- skillname varchar(20) constraint unq_skillname unique);
+
+ 
+-- create table client(clientid char(3) constraint pk_clientid primary key constraint strtswith_c check(clientid like 'C%'),
+-- name varchar2(10),
+-- phone varchar(14) constraint phone_format  check(PHONE LIKE'+91-%' OR PHONE LIKE'+81-%' OR PHONE LIKE'+31-%' OR PHONE LIKE'+48-%' OR PHONE LIKE'+44-%'));
+
+-- create table work_exp(empcode number(3) references emp,
+-- prjid char(3) references prj_details,
+-- work_experience number(2) check (work_experience>=0) not null,
+-- clientid char(3) references client ON DELETE SET NULL,
+-- rating char(1) check (rating in ('A','B','C')),
+-- primary key(empcode,prjid));
+
+
+-- create table emp_skill(empno number(3) constraint fk_empno references emp,
+-- skillid char(3)constraint fk_skillid references skill ON DELETE CASCADE,
+-- skill_experience number(3) check (skill_experience>0));
+
+_____________________________________________________________________________________________________________________________________
+
+-- ALTER TABLE EMP ADD(REPORTS_TO Number(3));
+
+-- ALTER TABLE EMP
+-- ADD CONSTRAINT FK_REPORTS_TO_EMPCODE
+-- FOREIGN KEY(REPORTS_TO)
+-- REFERENCES EMP;
+
+
+
+-- ALTER TABLE SKILL
+-- ADD CONSTRAINT SKILLID_STARTS_WITH_S
+-- CHECK(SKILLID LIKE'S%');
+
+
+-- ALTER TABLE EMP_SKILL
+-- ADD CONSTRAINT  PK_EMPNO_SKILLID
+-- PRIMARY KEY(EMPNO, SKILLID);
+
+-- ALTER TABLE PRJ_DETAILS
+-- ADD CONSTRAINT UNQ_PRJ_NAME
+-- UNIQUE(PRJ_NAME);
+
+
+-- ALTER TABLE CLIENT ADD(EMAIL varchar2(20));
+
+-- ALTER TABLE CLIENT
+-- ADD CONSTRAINT VALID_EMAIL
+-- CHECK(EMAIL LIKE'%@%.___');
+
+
+-- ALTER TABLE EMP
+-- ADD CONSTRAINT UNQ_PHONE
+-- UNIQUE(PHONE);
+
+
+-- ALTER TABLE EMP
+-- ADD CONSTRAINT UNQ_EMAILID
+-- UNIQUE(EMAIL);
+
+
+-- ALTER TABLE MEDICAL_POLICY
+-- DROP CONSTRAINT PK_EMPNO_POLICYNO;
+
+
+-- ALTER TABLE MEDICAL_POLICY
+-- ADD CONSTRAINT PK_EMPNO_POLICYNO_POLICYDATE
+-- PRIMARY KEY(EMPNO,POLICYNO,POLICYDATE);
+
+
+-- ALTER TABLE MEDICAL_POLICY
+-- DROP CONSTRAINT PREMIUM_GREATER_THAN_0;
+
+
+-- ALTER TABLE MEDICAL_POLICY
+-- ADD CONSTRAINT PREMIUM_GREATER_THAN_1000
+-- CHECK(PREMIUM>1000);
+________________________________________________________________________________________________________________
+
+WEEK 2
+
+--insert into EMP values(100,'RAJESH','BTECH',9336423737,'rajesh@digisol.com','DEVELOPER',98000,101);//FK ERROR
+
+
+insert into EMP values(100,'RAJESH','BTECH',9336423737,'rajesh@digisol.com','DEVELOPER',98000,NULL);
+insert into EMP values(101,'RAVI','MTECH',9737993146,'ravi@digisol.com','PROJEACT LEADER',110000,NULL);
+insert into EMP values(102,'VIJAY','BTECH',9336446437,'vijay@digisol.com','PROJECT MANAGER',100000,NULL);
+insert into EMP values(108,'AJAY','BTECH',9312884737,'ajay@digisol.com','TECHNICAL HEAD',120000,NULL);
+insert into EMP values(110,'BHASKAR','MTECH',9129023737,'bhaskar@digisol.com','PROJECT DIRECTOR',150000,NULL);
+insert into EMP values(106,'RAJ','MSC',9229023737,'raj@digisol.com','PROJECT LEADER',200000,NULL);
+insert into EMP values(105,'MANISH','MCA',9326365737,'manish@digisol.com','DEVELOPER',130000,NULL);
+insert into EMP values(106,'PRSAD','PHD',9102423737,'prasad@digisol.com','CEO',300000,NULL); //ERROR PK AS 106 RAJ WRITE THIS IN COMPO BOOK
+insert into EMP values(102,'RAKESH','MTECH',9312323737,'rakesh@digisol.com','DEVELOPER',130000,NULL);//error as pk 102 write in compo
+insert into EMP values(108,'RAKESH','MTECH',9043523737,'rakesh1@digisol.com','DEVELOPER',150000,NULL);//error
+insert into EMP values(109,'ROHIT','MBA',9000213513,'rohit@digisol.com','DEVELOPER',140000,NULL);//error as mba not valid qualif
+insert into EMP values(110,'ROHAN','MTECH',9996423737,'rohan@digisol.com','S.ENGINEER',180000,NULL);//ERROR AS 110 already present
+insert into EMP values(111,'RAJ','MCA',9116423737,'raj@digital.com','DEVELOPER',110000,NULL); //email  domain error
+
+
+
+insert into EMP values(103,'PRSAD','PHD',9123477800,'prasad@digisol.com','CEO',99000,NULL);
+insert into EMP values(104,'RAKESH','MTECH',9123499800,'rakesh@digisol.com','DEVELOPER',98000,105);
+insert into EMP values(107,'RAKESH','MTECH',9123497777,'rakesh2@digisol.com','DEVELOPER',99000,108);
+insert into EMP values(109,'SHYAM','MTECH',9123497711,'shyam@digisol.com','PROJECT LEADER',98000,106);
+insert into EMP values(112,'ROHAN','MTECH',9144497711,'rohan@digisol.com','DEVELOPER',97500,100);
+insert into EMP values(111,'RAJ','PHD',8827677899,'raj2@digisol.com','DEVELOPER',99000,101);
+
+
+
+insert into SKILL values('S1','Full stack');
+insert into SKILL values('S2','Python');
+insert into SKILL values('S3','JAVA');
+insert into SKILL values('S4','C++');
+insert into SKILL values('S6','ORACLE');
+insert into SKILL values('S7','ANDRIOD');
+insert into SKILL values('S8','AZURE');
+insert into SKILL values('S9','DOT NET');
+insert into SKILL values('S10','IOS');
+
+
+insert into CLIENT values('C1','ABC','+48-87489389','aaa@abc.com');
+insert into CLIENT values('C2','LTS','+91-78389397','bbb@lts.com');
+insert into CLIENT values('C3','RK','+44-67838934','ccc@rk.com');
+insert into CLIENT values('C4','MMA','+31-77839093','ddd@mma.com');
+insert into CLIENT values('C5','AKS','+81-66822903','eee@aks.com');//PHONE FORMAT ERROR WRITE IN BOOK
+insert into CLIENT values('C6','GKS','+44-75628982','fff@gks.com');
+insert into CLIENT values('C7','B&B','+91-64839839','ggg@bb.com');//SOME ENTER VALUE FOR B THING basically &B is asking for value and that will be put instead of it
+insert into CLIENT values('C8','ABT','+97-67554667','hhh@abt.com');//PHONE FORMAT VIOLATED
+insert into CLIENT values('C8','ABT','+48-67554667','hhh@abt.com');//THUS USED CORREECT FORMAT
+insert into CLIENT values('C9','XYZ','+91-64839821','xyz@ab.com');
+
+
+//insert into CLIENT values('C12','N&&K',NULL,NULL);
+
+
+UPDATE EMP
+SET REPORTS_TO=101
+WHERE EMPCODE=100;
+
+UPDATE EMP
+SET REPORTS_TO=110
+WHERE EMPCODE=106;
+
+similar for others
+
+
+insert into EMP_SKILL values(100,'S1',15);
+insert into EMP_SKILL values(100,'S3',10);
+ insert into EMP_SKILL values(101,'S1',6);
+insert into EMP_SKILL values(101,'S2',10);
+insert into EMP_SKILL values(102,'S4',18);
+insert into EMP_SKILL values(110,'S1',14);
+ insert into EMP_SKILL values(110,'S6',20);
+insert into EMP_SKILL values(106,'S2',10);
+insert into EMP_SKILL values(106,'S6',12);
+insert into EMP_SKILL values(106,'S8',10);
+insert into EMP_SKILL values(108,'S9',5);
+insert into EMP_SKILL values(108,'S6',18);
+insert into EMP_SKILL values(105,'S7',12);
+insert into EMP_SKILL values(105,'S10',11);
+
+insert into EMP_SKILL values(101,'S2',7);//error cos empno+skillid is combo pk, and 101 s2 is already present upar
+
+insert into EMP_SKILL valueS(101,'S6',7);
+
+
+insert into MEDICAL_POLICY values(100,'MED001',10000,'10-12-2020');//error column size is less
+
+ALTER TABLE MEDICAL_POLICY
+MODIFY(POLICYNO VARCHAR2(10));
+
+//also error well get as premium siZE also 4, so will alter that also
+
+ ALTER TABLE MEDICAL_POLICY
+ MODIFY(PREMIUM NUMBER(10));
+
+//also date format is default but while adding were asked ddmmyyyy
+//so everytime to date use karna padega
+
+insert into MEDICAL_POLICY values(100,'MED001',10000,TO_DATE('10-12-2020','DD-MM-YYYY'));
+insert into MEDICAL_POLICY values(101,'MED003',12000,TO_DATE('15-12-2020','DD-MM-YYYY'));
+insert into MEDICAL_POLICY values(100,'MED001',10000,TO_DATE('10-01-2021','DD-MM-YYYY'));
+insert into MEDICAL_POLICY values(101,'MED003',12000,TO_DATE('15-01-2021','DD-MM-YYYY'));
+insert into MEDICAL_POLICY values(103,'MED004',9000,TO_DATE('21-01-2021','DD-MM-YYYY'));
+
+//ask mam what to do about these error inputs, make tweaks and make it work ay not include
+
+insert into FAMILY_DEPENDENTS values(100,'AJITH','SON',12);
+insert into FAMILY_DEPENDENTS values(100,'PRITHVI','DAUGHTER',9);
+insert into FAMILY_DEPENDENTS values(101,'AARYA','DAUGHTER',17);
+insert into FAMILY_DEPENDENTS values(101,'AKANKSH','SON',11);
+insert into FAMILY_DEPENDENTS values(101,'ANITHA','SPOUSE',43);
+
+
+
+select * from FAMILY_DEPENDENTS;
+
+
+
+insert into PRJ_DETAILS values('p1','SPYDER','10-JAN-2020','11-OCT-2022','11-NOV-2022',102,2000000,1990000);
+insert into PRJ_DETAILS values('p2','APOLLO','01-JAN-2019','10-JULY-2021','30-DEC-2021',108,3000000,3600000);
+insert into PRJ_DETAILS values('p3','UNICORN','03-SEP-2021','10-OCT-2023','10-OCT-2024',106,7500000,8000000);
+insert into PRJ_DETAILS values('p4','ZEUS','28-FEB-2020','09-JUN-2021','10-JAN-2022',110,5500000,5000000);
+insert into PRJ_DETAILS values('p5','JUPITOR','07-AUG-2018','04-FEB-2020','01-NOV-2020',110,9000000,9000000);
+insert into PRJ_DETAILS values('p6','MARS','21-FEB-2022','07-AUG-2020','07-AUG-2024',110,5500000,5000000);//end date>start constraint violated
+
+insert into PRJ_DETAILS values('p6','MARS','21-FEB-2022','07-AUG-2020','07-AUG-2024',110,5500000,5000000)
+*
+ERROR at line 1:es
+ORA-02290: check constraint (DSE118.END_DATE_GREATER_START_DATE) violated 
+
+
+ insert into PRJ_DETAILS values('P6','MARS','21-FEB-2022','07-AUG-2022','07-AUG-2024',110,5500000,5000000);
+
+insert into PRJ_DETAILS values(NULL,'XXX','01-JAN-2018','10-JULY-2020','30-DEC-2021',102,3700000,4600000);
+insert into PRJ_DETAILS values(NULL,'XXX','01-JAN-2018','10-JULY-2020','30-DEC-2021',102,3700000,4600000)
+                               *
+ERROR at line 1:
+ORA-01400: cannot insert NULL into ("DSE118"."PRJ_DETAILS"."PRJID") 
+
+
+insert into PRJ_DETAILS values('P0','XXX','01-JAN-2018','10-JULY-2020','30-DEC-2021',102,3700000,4600000);
+
+ insert into PRJ_DETAILS values('p7','ABC','10-FEB-2020','11-OCT-2024','11-NOV-2025',123,2500000,2990000);
+insert into PRJ_DETAILS values('p7','ABC','10-FEB-2020','11-OCT-2024','11-NOV-2025',123,2500000,2990000)//no employee of code 123
+*
+ERROR at line 1:
+ORA-02291: integrity constraint (DSE118.FK_LEAD_EMP) violated - parent key not 
+found 
+
+insert into PRJ_DETAILS values('p6','MARS','21-FEB-2022','07-AUG-2022','07-AUG-2024',110,5500000,5000000);
+insert into PRJ_DETAILS values('p0','XXX','01-JAN-2018','10-JULY-2020','30-DEC-2021',102,3700000,4600000);
+insert into PRJ_DETAILS values('p7','ABC','10-FEB-2020','11-OCT-2024','11-NOV-2025',108,2500000,2990000);
+
+ SELECT * FROM PRJ_DETAILS;
+
+insert into PAY_CHECK values(100,'01-DEC-2020',2000,null,null,null,2500,5000);
+insert into PAY_CHECK values(101,'01-DEC-2020',3000,null,null,null,5000,7000);
+insert into PAY_CHECK values(102,'01-DEC-2020',3000,null,null,null,3600,7000);
+insert into PAY_CHECK values(100,'01-JAN-2021',3000,null,null,null,450,4000);
+insert into PAY_CHECK values(101,'01-JAN-2021',5000,null,null,null,2100,4000);
+insert into PAY_CHECK values(102,'01-JAN-2021',5000,null,null,null,null,9000);
+insert into PAY_CHECK values(103,'02-JAN-2021',7000,null,null,null,900,3000);
+
+
+insert into WORK_EXP values(100,'p1',20,'C1','A');
+insert into WORK_EXP values(100,'p3',15,'C3','A');
+insert into WORK_EXP values(101,'p1',16,'C1','A');
+insert into WORK_EXP values(102,'p2',18,'C2','B');
+insert into WORK_EXP values(102,'p1',18,'C1','A');
+insert into WORK_EXP values(108,'p2',12,'C2','C');
+insert into WORK_EXP values(106,'p3',20,'C3','C');
+insert into WORK_EXP values(106,'p4',10,'C4','C');
+insert into WORK_EXP values(105,'p2',19,'C2','B');
+insert into WORK_EXP values(110,'p4',12,'C4','B');
+insert into WORK_EXP values(110,'p5',16,'C8','A');
+insert into WORK_EXP values(105,'p5',5,'C5','D');//D rating is invalid
+insert into WORK_EXP values(105,'p5',5,'C5','C');
+insert into WORK_EXP values(111,'p5',5,'C5','C');
+
+SELECT * FROM WORK_EXP;
+
+
+INSERTING DONEEEE
+
+2.9
+COMMIT;
+
+DELETE FROM EMP
+WHERE EMPCODE = 100; //contraint fk_empno violated as empcode=100 found in child table, and wee know we cannot delete direcly from parent table, will have to delete from child table first
+
+2.10
+UPDATE emp
+SET 
+    email='rajesh@digital.com'
+WHERE
+    empcode=100; //email domain constraint violated, can only have @digisol.com
+
+2.11
+
+UPDATE WORK_EXP
+SET PRJID='p9'
+WHERE EMPCODE=111;
+ //parent key not found as no prjid p9
+
+UPDATE WORK_EXP
+SET PRJID='p1'
+WHERE EMPCODE=111;
+
+2.12
+
+COMMIT;
+
+DELETE FROM CLIENT
+WHERE CLIENTID = 'C1';
+
+//1 ROW DELETED
+
+2.13
+COMMIT;
+
+DELETE FROM FAMILY_DEPENDENTS
+WHERE EMPNO=100;
+
+2 ROWS DELTED
+ 
+ROLLBACK;
+
+Rollback complete.
+//rollback didnt work (disdint restore deleted ones)??
+
+2.14
+
+UPDATE EMP
+SET SALARY=1.01*SALARY
+WHERE DESIGNATION='DEVELOPER';
+
+2.15 
+UPDATE EMP
+ SET EMPCODE=106
+ WHERE REPORTS_TO=108; //error as 106 empcode already present (UNIQUE CONSTRAINT VIOLATED)
+
+2.16
+
+ UPDATE EMP
+SET EMPCODE=117
+ WHERE REPORTS_TO=108;
+
+COMMIT;

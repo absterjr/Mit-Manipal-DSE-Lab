@@ -1,0 +1,336 @@
+5.1 SQL> select upper(name) from emp;
+
+
+
+UPPER(NAME
+----------
+RAJESH
+RAVI
+VIJAY
+AJAY
+BHASKAR
+RAJ
+MANISH
+PRASAD
+RAKESH
+RAKESH
+
+
+
+
+UPPER(NAME
+----------
+
+
+
+RAJ
+
+
+
+13 rows selected.
+
+
+
+SQL> select lower(name) from emp;
+
+
+
+LOWER(NAME
+----------
+rajesh
+ravi
+vijay
+ajay
+bhaskar
+raj
+manish
+prasad
+rakesh
+rakesh
+
+
+
+
+LOWER(NAME
+----------
+
+
+
+raj
+
+
+
+13 rows selected.
+
+
+
+SQL> select initcap(name) from emp;
+
+
+
+INITCAP(NA
+----------
+Rajesh
+Ravi
+Vijay
+Ajay
+Bhaskar
+Raj
+Manish
+Prasad
+Rakesh
+Rakesh
+
+
+
+
+INITCAP(NA
+----------
+
+
+
+Raj
+
+
+
+13 rows selected.
+
+
+
+
+
+5.2 select name ||'works as'||designation from emp;
+
+
+
+NAME||'WORKSAS'||DESIGNATION
+--------------------------------------
+RAJESHworks asDEVELOPER
+RAVIworks asPROJECT LEAD
+VIJAYworks asPROJECT MANAGER
+AJAYworks asTECHNICAL HEAD
+BHASKARworks asPROJECT DIRECTOR
+RAJworks asPROJECT LEAD
+MANISHworks asDEVELOPER
+PRASADworks asCEO
+RAKESHworks as
+RAKESHworks asDEVELOPER
+works as
+
+
+
+NAME||'WORKSAS'||DESIGNATION
+--------------------------------------
+works asDEVELOPER
+RAJworks as
+
+
+
+13 rows selected.
+
+
+
+
+
+
+
+
+
+
+
+5.5 select name,length(name) from emp;
+
+
+
+NAME LENGTH(NAME)
+---------- ------------
+RAJESH 6
+RAVI 4
+VIJAY 5
+AJAY 4
+BHASKAR 7
+RAJ 3
+MANISH 6
+PRASAD 6
+RAKESH 6
+RAKESH 6
+
+
+
+
+NAME LENGTH(NAME)
+---------- ------------
+
+
+
+RAJ 3
+
+
+
+13 rows selected.
+
+
+
+5.6 select substr(email,3,9) from emp;
+
+
+
+SUBSTR(EMAIL,3,9)
+------------------------------------
+jesh@digi
+vi@digiso
+jay@digis
+ay@digiso
+askar@dig
+j@digisol
+nish@digi
+asad@digi
+
+
+
+
+
+
+SUBSTR(EMAIL,3,9)
+------------------------------------
+
+
+
+j1@digiso
+
+
+
+13 rows selected.
+
+
+
+
+5.7 select replace(email,'digisol','digitech') from emp;
+
+
+
+REPLACE(EMAIL,'DIGISOL','DIGITECH')
+--------------------------------------------------------------------------------
+rajesh@digitech.com
+ravi@digitech.com
+vijay@digitech.com
+ajay@digitech.com
+bhaskar@digitech.com
+raj@digitech.com
+manish@digitech.com
+prasad@digitech.com
+
+
+
+
+
+
+REPLACE(EMAIL,'DIGISOL','DIGITECH')
+--------------------------------------------------------------------------------
+
+
+
+raj1@digitech.com
+
+
+
+13 rows selected.
+
+
+
+
+
+5.8 select name||'dependent on'||dep_name from emp join family_dependents on emp.empcode=family_dependents.empno;
+
+
+
+NAME||'DEPENDENTON'||DEP_NAME
+------------------------------------------
+RAVIdependent onAARYA
+RAVIdependent onAKANKSH
+RAVIdependent onANITHA
+
+
+
+5.9 select clientid,length(clientid) from client;
+
+
+
+CLI LENGTH(CLIENTID)
+--- ----------------
+C2 3
+C3 3
+C4 3
+C5 3
+C6 3
+C7 3
+C8 3
+C9 3
+
+
+
+8 rows selected.
+
+
+
+
+5.12 select ascii('A'),chr(65) from dual;
+
+
+
+ASCII('A') C
+---------- -
+65 A
+
+
+
+5.13 select trunc(123.456,2) from dual;
+
+
+
+TRUNC(123.456,2)
+----------------
+123.45
+
+
+
+5.14 select sqrt(9),power(9,2),power(9,5) from dual;
+
+
+
+SQRT(9) POWER(9,2) POWER(9,5)
+---------- ---------- ----------
+3 81 59049
+
+
+
+5.15 SQL> select round(123.456,2) from dual;
+
+
+
+ROUND(123.456,2)
+----------------
+123.46
+
+
+
+5.16 select abs(-123),mod(123,10) from dual;
+
+
+
+ABS(-123) MOD(123,10)
+
+
+
+---------- -----------
+123 3
+
+
+
+5.17 SQL> select floor(234.36),ceil(-234.36) from dual;
+
+
+
+FLOOR(234.36) CEIL(-234.36)
+------------- -------------
+234 -234
