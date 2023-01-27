@@ -7,3 +7,7 @@
 - In the terminal an IP address will come. Follow the link. 
 - In the URL after address write "/recommendations" (as we defined it in our main.py file)
 - Enter a movie name say "Bad Boys". Click Submit and it will show you the similar movies along with their similarity score.
+
+
+## 
+Templates folder contain the web page that opens when you follow the link. Modify it according to your preferences
