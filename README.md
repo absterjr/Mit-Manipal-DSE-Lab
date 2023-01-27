@@ -6,9 +6,9 @@ This repository contains all the labs conducted by MIT Manipal, for the branch o
 
 This folder contains programs and notebooks of 3rd Sem Labs:
 
-- [OOP in Java](https://github.com/absterjr/Mit-Manipal-DSE-Lab/tree/main/IIIrd%20Sem/OOP_200968048)
+- [OOP](https://github.com/absterjr/Mit-Manipal-DSE-Lab/tree/main/IIIrd%20Sem/OOP_200968048)
 - [DSA](https://github.com/absterjr/Mit-Manipal-DSE-Lab/tree/main/IIIrd%20Sem/DSA_200968048)
-- [Intro to Data Analytics](https://github.com/absterjr/Mit-Manipal-DSE-Lab/tree/main/IIIrd%20Sem/IDA_200968048)
+- [IDA](https://github.com/absterjr/Mit-Manipal-DSE-Lab/tree/main/IIIrd%20Sem/IDA_200968048)
 
 
 ## IVth Sem Labs
