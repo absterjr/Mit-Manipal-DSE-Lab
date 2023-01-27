@@ -6,9 +6,9 @@ This repository contains all the labs conducted by MIT Manipal, for the branch o
 
 This folder contains programs and notebooks of 3rd Sem Labs:
 
-- [OOP](https://github.com/absterjr/Mit-Manipal-DSE-Lab/tree/main/IIIrd%20Sem/OOP_200968048)
-- [DSA](https://github.com/absterjr/Mit-Manipal-DSE-Lab/tree/main/IIIrd%20Sem/DSA_200968048)
-- [IDA](https://github.com/absterjr/Mit-Manipal-DSE-Lab/tree/main/IIIrd%20Sem/IDA_200968048)
+- [Object Oriented Programming](https://github.com/absterjr/Mit-Manipal-DSE-Lab/tree/main/IIIrd%20Sem/OOP_200968048)
+- [Data Structures & Algorithms](https://github.com/absterjr/Mit-Manipal-DSE-Lab/tree/main/IIIrd%20Sem/DSA_200968048)
+- [Introduction to Data Analytics](https://github.com/absterjr/Mit-Manipal-DSE-Lab/tree/main/IIIrd%20Sem/IDA_200968048)
 
 
 ## IVth Sem Labs
@@ -16,7 +16,7 @@ This folder contains programs and notebooks of 3rd Sem Labs:
 This folder contains programs and notebooks of 4th Sem Labs:
 
 - [Machine Learning](https://github.com/absterjr/Mit-Manipal-DSE-Lab/tree/main/IVth%20Sem/Machine%20Learning)
-- [DBMS](https://github.com/absterjr/Mit-Manipal-DSE-Lab/tree/main/IVth%20Sem/DBMS)
+- [Database Management System](https://github.com/absterjr/Mit-Manipal-DSE-Lab/tree/main/IVth%20Sem/DBMS)
 
 
 ## Vth Sem Labs
