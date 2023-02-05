@@ -1,0 +1,54 @@
+#include<iostream>
+#include<sys/time.h>
+//Time:  0.001085 0.004125 0.002579  0.00312 0.000997 0.001423
+
+using namespace std;
+
+int main(){
+	struct timeval begin, end;
+    gettimeofday(&begin, 0);
+
+    int a[10][10] = {{1,2,3,4,5},{5,4,3,2,4},{10,3,13,14,15},{11,2,11,33,44},{1,12,5,4,6}};
+	int b[10][10] , n = 5, rowmax[10], rowmin[10];
+	cout<<"The original matrix A:\n";
+	for(int i =0; i<n; i++){
+		for(int j =0; j<n; j++){
+			cout<<a[i][j]<<" ";
+		}
+		cout<<endl;
+	}
+	for(int i =0; i<n; i++){
+		rowmax[i] = -9999;
+		rowmin[i] = 9999;
+	}
+	for(int i =0; i<n; i++){
+		for(int j =0; j<n; j++){
+			if( rowmax[i] < a[i][j]) rowmax[i] = a[i][j];
+			if( rowmin[i] > a[i][j]) rowmin[i] = a[i][j];
+			b[i][j] = 0;
+		}
+	}
+
+	for(int i =0; i<n; i++){
+		for(int j = 0; j<n; j++){
+			if(i-j > 0){
+				b[i][j] = rowmax[i];
+			}else if(i-j <0){
+				b[i][j] = rowmin[i];
+			}
+		}
+	}
+	cout<<"The resultant matrix B:\n";
+	for(int i =0; i<n; i++){
+		for(int j =0; j<n; j++){
+			cout<<b[i][j]<<" ";
+		}
+		cout<<endl;
+	}
+	gettimeofday(&end, 0);
+    long seconds = end.tv_sec - begin.tv_sec;
+    long microseconds = end.tv_usec - begin.tv_usec;
+    double elapsed = seconds + microseconds*1e-6;
+    cout<<"\nTime measured: "<<elapsed<<" seconds.\n";
+	return 0;
+}

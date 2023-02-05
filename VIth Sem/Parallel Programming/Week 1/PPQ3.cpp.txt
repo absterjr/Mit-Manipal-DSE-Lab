@@ -1,0 +1,34 @@
+#include<iostream>
+#include<sys/time.h>
+//Time: 0.002219 0.00
+
+using namespace std;
+
+int main(){
+	struct timeval begin, end;
+    gettimeofday(&begin, 0);
+
+    char str[100] = "HeLLo", toggle[100];
+	int i =0;
+	for(i =0; str[i] != '\0'; i++){
+		if(str[i]>64 && str[i]<91){
+			toggle[i] = str[i] +32;
+		}
+		else if(str[i]>96 && str[i] <123){
+			toggle[i] = str[i]-32;
+		}
+		else{
+			toggle[i] = str[i];
+		}
+	}
+	toggle[i] = '\0';
+	cout<<"The original string: "<<str<<endl;
+	cout<<"The toggled string: "<<toggle;
+
+	gettimeofday(&end, 0);
+    long seconds = end.tv_sec - begin.tv_sec;
+    long microseconds = end.tv_usec - begin.tv_usec;
+    double elapsed = seconds + microseconds*1e-6;
+    cout<<"\nTime measured: "<<elapsed<<" seconds.\n";
+	return 0;
+}

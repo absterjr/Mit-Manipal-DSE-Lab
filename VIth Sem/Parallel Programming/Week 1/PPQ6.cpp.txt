@@ -1,0 +1,43 @@
+#include<iostream>
+#include<cstdlib>
+#include<sys/time.h>
+//Time:  0.001085 0.004125 0.002579  0.00312 0.000997 0.001423
+
+using namespace std;
+
+int main(){
+	struct timeval begin, end;
+    gettimeofday(&begin, 0);
+
+    int matrix[50][50] = {{1,2,3,4,5}, {1,2,3,4,5}, {1,2,3,4,5}, {1,2,3,4,5}, {1,2,3,4,5}};
+	int vec[50] = {1,2,3,4,5};
+	int r = 5 , c = 5, n = 5, result[50];
+	if(c!=n){
+		cout<<"Number of columns in the matrix is not equal to length of the vector. Thus multiplication is not possible!";
+		exit(0);
+	}
+	for(int i =0; i<r; i++){
+		result[i] = 0;
+		for(int j =0; j<n; j++) result[i] += matrix[i][j]*vec[j];
+	}
+	cout<<"The original Matrix:\n";
+	for(int i =0; i<r; i++){
+        for(int j =0; j<c; j++){
+            cout<<matrix[i][j]<<" ";
+        }
+        cout<<endl;
+	}
+	cout<<endl;
+	cout<<"The original vector: ";
+	for(int i =0; i<n; i++)cout<<vec[i]<<" ";
+	cout<<endl;
+	cout<<"The result of multiplication is the vector: ";
+	for(int i =0; i<r; i++) cout<<result[i]<<" ";
+
+	gettimeofday(&end, 0);
+    long seconds = end.tv_sec - begin.tv_sec;
+    long microseconds = end.tv_usec - begin.tv_usec;
+    double elapsed = seconds + microseconds*1e-6;
+    cout<<"\nTime measured: "<<elapsed<<" seconds.\n";
+	return 0;
+}

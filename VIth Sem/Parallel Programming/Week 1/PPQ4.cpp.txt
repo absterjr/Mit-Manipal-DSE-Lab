@@ -1,0 +1,31 @@
+#include<iostream>
+#include<sys/time.h>
+//Time: 0.001199 0.002008 0.002974 0.001007 0.002052
+using namespace std;
+
+int main(){
+	struct timeval begin, end;
+    gettimeofday(&begin, 0);
+
+    char word[100] = "PCBD" , pattern[200];
+	int n = 4, k =0;
+	/*cout<<"Enter length of the word: ";
+	cin>>n;
+	cout<<"Enter the word: ";
+	cin>>word;*/
+	word[n+1] = '\0';
+	for(int i =0; i<n; i++){
+		for(int j =0; j<=i; j++){
+			pattern[k++] = word[i];
+		}
+	}
+	pattern[k] = '\0';
+	cout<<"The orginal string: "<<word<<endl;
+	cout<<"The pattern generated is: "<<pattern;
+	gettimeofday(&end, 0);
+    long seconds = end.tv_sec - begin.tv_sec;
+    long microseconds = end.tv_usec - begin.tv_usec;
+    double elapsed = seconds + microseconds*1e-6;
+    cout<<"\nTime measured: "<<elapsed<<" seconds.\n";
+	return 0;
+}

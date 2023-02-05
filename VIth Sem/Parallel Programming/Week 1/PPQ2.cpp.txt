@@ -1,0 +1,22 @@
+#include<iostream>
+#include<sys/time.h>
+//Time: 0.001128 0.0013 0.001015 0.001013 0.001998 seconds
+
+using namespace std;
+
+int main(){
+	struct timeval begin, end;
+    gettimeofday(&begin, 0);
+
+    int num1 = 3, num2 = 5;
+	cout<<"Result of addition: "<<num1+num2<<endl;
+	cout<<"Result of subtraction: "<<num1-num2<<endl;
+	cout<<"Result of multiplication: "<<num1*num2<<endl;
+	cout<<"Result of division: "<<num1/num2<<endl;
+	gettimeofday(&end, 0);
+    long seconds = end.tv_sec - begin.tv_sec;
+    long microseconds = end.tv_usec - begin.tv_usec;
+    double elapsed = seconds + microseconds*1e-6;
+    cout<<"\nTime measured: "<<elapsed<<" seconds.\n";
+	return 0;
+}
