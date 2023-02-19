@@ -35,16 +35,15 @@ def bfs(start, end, data):
 
 # Main function
 def main():
-    if len(sys.argv) != 3:
-        sys.exit("Usage: python degrees.py [csv file] [actor name]")
-    data = load_data(sys.argv[1])
-    start = sys.argv[2]
-    end = "Kevin Bacon"
+
+    data = load_data('small.csv')
+    start = "Bill Paxton"
+    end = "Robin Wright"
     degree = bfs(start, end, data)
     if degree is None:
         print("No connection found")
     else:
-        print(f"{start} and {end} are {degree} degrees of separation apart")
+        print(f"{start} and {end}: Degree of Separation = {degree} ")
 
 if __name__ == "__main__":
     main()
