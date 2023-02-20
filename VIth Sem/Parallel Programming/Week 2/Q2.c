@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <omp.h>
-#include <math.h> 
+#include <math.h>
 int main() {
 
 #pragma omp parallel
