@@ -1,0 +1,40 @@
+# Scala Code Q1
+val lines = spark.sparkContext.textFile("spark_048/employees.csv").filter(line => !line.startsWith("department"))
+val salarySum = lines.flatMap(line => {
+val tokens = line.split(",")
+List((tokens(0), tokens(1).toDouble))
+}).reduceByKey(_ + _)
+salarySum.toDF("department", "total_salary").show()
+
+
+#Python Code Q1
+from pyspark.sql import SparkSession
+from pyspark.sql.functions import col
+lines = spark.sparkContext.textFile("spark-048/employees.csv") \
+                          .filter(lambda line: not line.startswith("department"))
+salarySum = lines.flatMap(lambda line: [(line.split(",")[0], float(line.split(",")[1]))]) \
+                 .reduceByKey(lambda a, b: a + b) \
+                 .toDF(["department", "total_salary"]) \
+                 .orderBy(col("total_salary").desc())
+# Show results
+salarySum.show()
+
+
+
+
+
+#Python Code Q3
+from pyspark.sql.functions import avg, sum, min, max
+df = spark.read.csv("file:///home/hdoop/math.csv", header=True, inferSchema=True)
+mathOps = df.withColumn("add", df["x"] + df["y"]) \
+            .withColumn("subtract", df["x"] - df["y"]) \
+            .withColumn("multiply", df["x"] * df["y"]) \
+            .withColumn("divide", df["x"] / df["y"])
+aggFuncs = df.select(avg(df["y"]).alias("avg"), sum(df["y"]).alias("sum"), 
+                     min(df["y"]).alias("min"), max(df["y"]).alias("max"))
+# Show results
+mathOps.show()
+aggFuncs.show()
+
+
+
