@@ -1,0 +1,54 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include "mpi.h"
+
+
+
+int main(int argc, char** argv) {
+	int rank, size, a, b, result = 0;
+	char op;
+
+	MPI_Init(&argc, &argv);
+	MPI_Comm_rank(MPI_COMM_WORLD, &rank);
+	MPI_Comm_size(MPI_COMM_WORLD, &size);
+
+	if (rank == 0) {
+		// Get input from user		
+		scanf_s("%d", &a);		
+		scanf_s("%d", &b);		
+		scanf_s(" %c", &op);
+	}
+	// Broadcast input to all processes
+	MPI_Bcast(&a, 1, MPI_INT, 0, MPI_COMM_WORLD);
+	MPI_Bcast(&b, 1, MPI_INT, 0, MPI_COMM_WORLD);
+	MPI_Bcast(&op, 1, MPI_CHAR, 0, MPI_COMM_WORLD);
+
+	// Perform operation based on operator
+	switch (op) {
+	case '+':
+		result = a + b;
+		break;
+	case '-':
+		result = a - b;
+		break;
+	case '*':
+		result = a * b;
+		break;
+	case '/':
+		if (b == 0) {
+			printf("Error: divide by zero\n");
+			MPI_Abort(MPI_COMM_WORLD, 1);
+		}
+		result = a / b;
+		break;
+	default:
+		printf("Error: invalid operator\n");
+		MPI_Abort(MPI_COMM_WORLD, 1);
+		break;
+	}
+	// Print result
+	printf("Process %d: %d %c %d = %d\n", rank, a, op, b, result);
+
+	MPI_Finalize();
+	return 0;
+}
