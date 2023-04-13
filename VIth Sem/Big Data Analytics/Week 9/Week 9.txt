@@ -58,6 +58,35 @@ val result = outer(10)(20)(30)
 println(s"Result of multiple nested function: $result")
 Result of multiple nested function: 60
 
+
+-- Above Code in Python:
+from pyspark.sql.functions import udf, lit
+from pyspark.sql.types import IntegerType
+
+def outer(x: int):
+    def inner(y: int):
+        def innermost(z: int):
+            return x + y + z
+        return innermost
+    return inner
+
+outer_udf = udf(lambda x, y, z: outer(x)(y)(z), IntegerType())
+
+df = spark.range(1, 6).selectExpr("id as x")
+df = df.withColumn("result", outer_udf("x", lit(20), lit(30)))
+
+df.show()
++---+------+                                                                    
+|  x|result|
++---+------+
+|  1|    51|
+|  2|    52|
+|  3|    53|
+|  4|    54|
+|  5|    55|
++---+------+
+
+
 1.1
 val arr = Array(1, 2, 3, 4, 5)
 def printArray(): Unit = {
