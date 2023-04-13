@@ -1,0 +1,56 @@
+﻿Q2/.
+
+from pyspark.sql.functions import udf
+from pyspark.sql.types import DoubleType
+
+# Define the arithmetic functions
+def add(x: float, y: float) -> float:
+    return x + y
+
+def subtract(x: float, y: float) -> float:
+    return x - y
+
+def multiply(x: float, y: float) -> float:
+    return x * y
+
+def divide(x: float, y: float) -> float:
+    return x / y
+
+# Create PySpark UDFs for each arithmetic function
+add_udf = udf(add, DoubleType())
+subtract_udf = udf(subtract, DoubleType())
+multiply_udf = udf(multiply, DoubleType())
+divide_udf = udf(divide, DoubleType())
+
+# Create a SparkSession and a DataFrame with two columns, "x" and "y"
+from pyspark.sql import SparkSession
+spark = SparkSession.builder.appName("CurryingExample").getOrCreate()
+df = spark.createDataFrame([(10.0, 2.0), (15.0, 3.0), (20.0, 4.0)], ["x", "y"])
+
+# Apply the arithmetic UDFs to the DataFrame
+df = df.withColumn("x_plus_y", add_udf("x", "y"))
+df = df.withColumn("x_minus_y", subtract_udf("x", "y"))
+df = df.withColumn("x_times_y", multiply_udf("x", "y"))
+df = df.withColumn("x_divided_by_y", divide_udf("x", "y"))
+
+# Show the resulting DataFrame
+df.show()
+
+Q1./ 
+
+object PartialFunctionExample {
+  def main(args: Array[String]): Unit = {
+    val list = List(1, 2, 3, 4, 5, 6)
+
+    // Define a partial function that returns the square of an integer
+    val square: PartialFunction[Int, Int] = {
+      case x: Int => x * x
+    }
+
+    // Use the collect method to apply the partial function to each element in the list
+    val squares = list.collect(square)
+
+    // Print out the resulting list of squares
+    println(squares)
+  }
+}
