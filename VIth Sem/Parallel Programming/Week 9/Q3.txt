@@ -1,0 +1,56 @@
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <mpi.h>
+
+int main(int argc, char** argv) {
+    int rank, size, i, j, non_vowel_count = 0, local_count = 0;
+    char *str, *local_str;
+
+    MPI_Init(&argc, &argv);
+    MPI_Comm_rank(MPI_COMM_WORLD, &rank);
+    MPI_Comm_size(MPI_COMM_WORLD, &size);
+
+    if (rank == 0) {
+        printf("Enter a string: ");
+        fflush(stdout);
+        char buffer[1000];
+        fgets(buffer, 1000, stdin);
+        str = (char*)malloc(strlen(buffer) * sizeof(char));
+        sscanf(buffer, "%s", str);
+    }
+
+    int len = strlen(str);
+
+    MPI_Bcast(&len, 1, MPI_INT, 0, MPI_COMM_WORLD);
+
+    int local_len = len / size;
+
+    local_str = (char*)malloc((local_len + 1) * sizeof(char));
+
+    MPI_Scatter(str, local_len, MPI_CHAR, local_str, local_len, MPI_CHAR, 0, MPI_COMM_WORLD);
+
+    for (i = 0; i < local_len; i++) {
+        if (local_str[i] != 'a' && local_str[i] != 'e' && local_str[i] != 'i' && local_str[i] != 'o' && local_str[i] != 'u' &&
+            local_str[i] != 'A' && local_str[i] != 'E' && local_str[i] != 'I' && local_str[i] != 'O' && local_str[i] != 'U') {
+            local_count++;
+        }
+    }
+
+    MPI_Reduce(&local_count, &non_vowel_count, 1, MPI_INT, MPI_SUM, 0, MPI_COMM_WORLD);
+
+    if (rank == 0) {
+        printf("The number of non-vowels found by each process: \n");
+
+        for (i = 0; i < size; i++) {
+            printf("Process %d: %d\n", i, non_vowel_count);
+        }
+
+        printf("The total number of non-vowels found: %d\n", non_vowel_count);
+    }
+
+    MPI_Finalize();
+
+    return 0;
+}
