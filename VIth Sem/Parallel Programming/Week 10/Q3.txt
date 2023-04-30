@@ -1,0 +1,46 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <mpi.h>
+
+#define MAX_VECTOR_SIZE 100000
+
+void elementwise_vector_operation(double* v1, double* v2, double* res, int n, int op) {
+    for (int i = 0; i < n; i++)
+        res[i] = op == 0 ? v1[i] + v2[i] : op == 1 ? v1[i] - v2[i] : op == 2 ? v1[i] * v2[i] : v1[i] / v2[i];
+}
+
+int main(int argc, char** argv) {
+    int rank, size, n;
+    double v1[MAX_VECTOR_SIZE], v2[MAX_VECTOR_SIZE], res[MAX_VECTOR_SIZE];
+    MPI_Init(&argc, &argv);
+    MPI_Comm_rank(MPI_COMM_WORLD, &rank);
+    MPI_Comm_size(MPI_COMM_WORLD, &size);
+    if (rank == 0) {
+        printf("Enter the size of the vectors (less than or equal to %d): ", MAX_VECTOR_SIZE);
+        scanf("%d", &n);
+        printf("Enter the elements of vector 1: ");
+        for (int i = 0; i < n; i++) scanf("%lf", &v1[i]);
+        printf("Enter the elements of vector 2: ");
+        for (int i = 0; i < n; i++) scanf("%lf", &v2[i]);
+    }
+    MPI_Bcast(&n, 1, MPI_INT, 0, MPI_COMM_WORLD);
+    MPI_Bcast(v1, n, MPI_DOUBLE, 0, MPI_COMM_WORLD);
+    MPI_Bcast(v2, n, MPI_DOUBLE, 0, MPI_COMM_WORLD);
+    int c = n / size;
+    elementwise_vector_operation(v1 + rank * c, v2 + rank * c, res, c, 0); MPI_Gather(res, c, MPI_DOUBLE, res, c, MPI_DOUBLE, 0, MPI_COMM_WORLD);
+    if (rank == 0) {
+        printf("\nAddition:\n");
+        for (int i = 0; i < n; i++) printf("%.2f ", res[i]);
+        elementwise_vector_operation(v1 + rank * c, v2 + rank * c, res, c, 1); MPI_Gather(res, c, MPI_DOUBLE, res, c, MPI_DOUBLE, 0, MPI_COMM_WORLD);
+        printf("\nSubtraction:\n");
+        for (int i = 0; i < n; i++) printf("%.2f ", res[i]);
+        elementwise_vector_operation(v1 + rank * c, v2 + rank * c, res, c, 2); MPI_Gather(res, c, MPI_DOUBLE, res, c, MPI_DOUBLE, 0, MPI_COMM_WORLD);
+        printf("\nMultiplication:\n");
+        for (int i = 0; i < n; i++) printf("%.2f ", res[i]);
+        elementwise_vector_operation(v1 + rank * c, v2 + rank * c, res, c, 3); MPI_Gather(res, c, MPI_DOUBLE, res, c, MPI_DOUBLE, 0, MPI_COMM_WORLD);
+        printf("\nDivision:\n");
+        for (int i = 0; i < n; i++) printf("%.2f ", res[i]);
+    }
+    MPI_Finalize();
+    return 0;
+}
