@@ -1,0 +1,41 @@
+
+#include <mpi.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <math.h>
+
+#define ARRAY_SIZE 5
+
+int main(int argc, char** argv) {
+    int rank, size, i;
+    int data[ARRAY_SIZE];
+    MPI_Init(&argc, &argv);
+    MPI_Comm_rank(MPI_COMM_WORLD, &rank);
+    MPI_Comm_size(MPI_COMM_WORLD, &size);
+    MPI_Status status;
+
+    if (rank == 0) {
+        printf("Enter %d elements of the array:\n", size);
+        for (i = 0; i < size; i++) {
+            scanf_s("%d", &data[i]);
+        }
+
+        for (i = 0; i < size; i++) {
+            MPI_Bsend(&data[i], 1, MPI_INT, i, 0, MPI_COMM_WORLD);
+        }
+    }
+    else {
+        int received_value;
+        MPI_Recv(&received_value, 1, MPI_INT, 0, 0, MPI_COMM_WORLD, &status);
+        if (rank % 2 == 0) {
+            int square = received_value * received_value;
+            printf("Process %d found the square of %d = %d\n", rank, received_value, square);
+        }
+        else {
+            int cube = received_value * received_value * received_value;
+            printf("Process %d found the cube of %d = %d\n", rank, received_value, cube);
+        }
+    }
+    MPI_Finalize();
+    return 0;
+}
