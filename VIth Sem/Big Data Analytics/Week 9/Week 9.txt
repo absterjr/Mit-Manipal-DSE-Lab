@@ -1,0 +1,181 @@
+﻿2.1
+def add(x: Int)(y: Int): Int = x + y
+def multiply(x: Int)(y: Int): Int = x * y
+
+val a = 5
+val b = 10
+
+val sum = add(a)(b)
+val product = multiply(a)(b)
+
+println(s"Sum of $a and $b is $sum")
+println(s"Product of $a and $b is $product")
+Sum of 5 and 10 is 15
+Product of 5 and 10 is 50
+
+2.2
+val arr = Array(1, 2, 3, 4, 5, 6)
+
+val partialFunc: PartialFunction[Int, String] = {
+  case x if x % 2 == 0 => s"$x is even"
+}
+
+val result = arr.collect(partialFunc)
+
+result.foreach(println)
+2 is even
+4 is even
+6 is even
+
+2.3
+def foo(x: Int): Int = x + 10
+def foo(x: Int, y: Int): Int = x + y
+
+val a = 5
+val b = 10
+
+val result1 = foo(a)
+val result2 = foo(a, b)
+
+println(s"Result with one parameter: $result1")
+println(s"Result with two parameters: $result2")
+Result with one parameter: 15
+Result with two parameters: 15
+
+2.4
+def outer(x: Int) = {
+  def inner(y: Int) = {
+    def innermost(z: Int) = {
+      x + y + z
+    }
+    innermost _
+  }
+  inner _
+}
+
+val result = outer(10)(20)(30)
+
+println(s"Result of multiple nested function: $result")
+Result of multiple nested function: 60
+
+
+-- Above Code in Python:
+from pyspark.sql.functions import udf, lit
+from pyspark.sql.types import IntegerType
+
+def outer(x: int):
+    def inner(y: int):
+        def innermost(z: int):
+            return x + y + z
+        return innermost
+    return inner
+
+outer_udf = udf(lambda x, y, z: outer(x)(y)(z), IntegerType())
+
+df = spark.range(1, 6).selectExpr("id as x")
+df = df.withColumn("result", outer_udf("x", lit(20), lit(30)))
+
+df.show()
++---+------+                                                                    
+|  x|result|
++---+------+
+|  1|    51|
+|  2|    52|
+|  3|    53|
+|  4|    54|
+|  5|    55|
++---+------+
+
+
+1.1
+val arr = Array(1, 2, 3, 4, 5)
+def printArray(): Unit = {
+  println("Printing array elements:")
+  arr.foreach(println)
+}
+
+printArray()
+Printing array elements:
+1
+2
+3
+4
+5
+
+1.2
+def sumArrayElements(arr: Array[Int]): Int = {
+  var sum = 0
+  arr.foreach(sum += _)
+  sum
+}
+
+val sum = sumArrayElements(arr)
+println(s"Sum of array elements: $sum")
+Sum of array elements: 15
+
+1.3
+def factorial(n: Int): Int = {
+  if (n <= 1) 1
+  else n * factorial(n-1)
+}
+
+val fact = factorial(5)
+println(s"Factorial of 5 is $fact")
+Factorial of 5 is 120
+
+1.4
+def printArrayLength(arr: Array[Int], msg: String = "Array length is"): Unit = {
+  val len = arr.length
+  println(s"$msg $len")
+}
+
+printArrayLength(arr)
+printArrayLength(arr, "Length of array is")
+Array length is 5
+Length of array is 5
+
+1.5
+val doubleArrayElements = arr.map(_ * 2)
+
+doubleArrayElements.foreach(println)
+2
+4
+6
+8
+10
+
+1.6
+val squaredArrayElements = arr.map(x => x*x)
+
+squaredArrayElements.foreach(println)
+1
+4
+9
+16
+25
+
+1.7
+def add(x: Int)(y: Int): Int = x + y
+
+val addFive = add(5) _
+
+val result = addFive(10)
+
+println(s"Result of curried function: $result")
+Result of curried function: 15
+
+1.8
+def outer(x: Int) = {
+  def inner(y: Int) = {
+    def innermost(z: Int) = {
+      x + y + z
+    }
+    innermost _
+  }
+  inner _
+}
+
+val result = outer(10)(20)(30)
+
+println(s"Result of nested function: $result")
+Result of nested function: 60
