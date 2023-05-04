@@ -1,1 +1,1 @@
-insert overwrite table hospital_part  partition(department = 'ent') select ename, eid, address, department,salary, shift from hospital_emp where department='ent';
+insert overwrite table hospital_part  partition(department = 'ent') select ename, id, address, department,salary, shift from hospital_emp where department='ent';
