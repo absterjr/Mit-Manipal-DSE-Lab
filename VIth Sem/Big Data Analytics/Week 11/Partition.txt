@@ -1,8 +1,0 @@
-#1: create table if not exists hospital_part (name string, eid int, add string, Dept string, Sal string, shifts int) 
-    partitioned by (department string)
-    row format delimited
-    fields terminated by '\t'
-    lines terminated by '\n';
-
-#2: load data local inpath '/home/hdoop/emp.txt' into table hospital_part
-        partition(department = "ent");
