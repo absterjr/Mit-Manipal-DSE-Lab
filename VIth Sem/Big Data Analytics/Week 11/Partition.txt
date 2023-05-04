@@ -4,4 +4,5 @@
     fields terminated by '\t'
     lines terminated by '\n';
 
-#2: insert overwrite table hospital_part  partition(department = 'ent') select ename, id, address, department,salary,     shift from hospital_emp where department='ent';
+#2: load data local inpath '/home/hdoop/emp.txt' into table hospital_part
+        partition(department = "ent");
