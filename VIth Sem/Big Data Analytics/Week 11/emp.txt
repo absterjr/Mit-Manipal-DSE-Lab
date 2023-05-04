@@ -1,0 +1,6 @@
+A 	1	abc	ent	2000	1
+B	2	bcd	ent	2000	2
+C	3	cde	ent	2000	3
+D	4	def	cardio	3000	1
+E	5	efg	cardio	3000	2
+F	6	fgh	cardio	3000	3
