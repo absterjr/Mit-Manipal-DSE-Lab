@@ -1,0 +1,43 @@
+#1: create database hospital;
+
+#2: show databases;
++----------------+
+| database_name  |
++----------------+
+| default        |
+| hospital       |
++----------------+
+
+#3: create table if not exists hospital_emp (Ename string, ID int, Address string, Department string, Salary string,  Shift int) 
+  comment 'Employee Details'
+  row format delimited
+  fields terminated by '\t'
+  lines terminated by '\n';
+  
+#4: describe hospital_employee;
++-------------+------------+----------+
+|  col_name   | data_type  | comment  |
++-------------+------------+----------+
+| ename       | string     |          |
+| id          | int        |          |
+| address     | string     |          |
+| department  | string     |          |
+| salary      | string     |          |
+| shift       | int        |          |
++-------------+------------+----------+
+
+#5: load data local inpath '/home/hdoop/emp.txt'
+    overwrite into table hospital_emp;
+
+#6: select * from hospital_empl;
++--------------------------+-----------------------+----------------------------+-------------------------------+---------------------------+--------------------------+
+| hospital_employee.ename  | hospital_employee.id  | hospital_employee.address  | hospital_employee.department  | hospital_employee.salary  | hospital_employee.shift  |
++--------------------------+-----------------------+----------------------------+-------------------------------+---------------------------+--------------------------+
+| A                        | 1                     | abc                        | ent                           | 2000                      | 1                        |
+| B                        | 2                     | bcd                        | ent                           | 2000                      | 2                        |
+| C                        | 3                     | cde                        | ent                           | 2000                      | 3                        |
+| D                        | 4                     | def                        | cardio                        | 3000                      | 1                        |
+| E                        | 5                     | efg                        | cardio                        | 3000                      | 2                        |
+| F                        | 6                     | fgh                        | cardio                        | 3000                      | 3                        |
++--------------------------+-----------------------+----------------------------+-------------------------------+---------------------------+--------------------------+
+
