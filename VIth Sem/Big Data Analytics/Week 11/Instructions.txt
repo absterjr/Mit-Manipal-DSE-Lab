@@ -1,0 +1,10 @@
+#1 To Enter into Hive: cd /usr/local/hive/Apache-hive-3.1.2-bin
+#2 To initiate Schema: bin/schematool -dbType derby -initSchema
+#3 If error: rm -Rf metastore_db
+#4 To Start the Server: bin/hiveserver2
+
+Wait until 3 Hive Session ID Generated
+Open New Terminal
+#1 Enter into Hive: cd /usr/local/hive/Apache-hive-3.1.2-bin
+#2 Go to Beeline Hive: bin/beeline -n hdoop -u jdbc:hive2://localhost:10000
+Start Writing Code to Create Databases and Tables.
