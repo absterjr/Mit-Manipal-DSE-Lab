@@ -1,0 +1,26 @@
+
+
+– Load the sales order dataset from HDFS 
+sales = LOAD ‘sales_order_dataset’ USING PigStorage(‘,’) AS (region:chararray, item:chararray, units:int, rep:chararray);
+
+– Group the sales by region sales_by_region = GROUP sales BY region;
+
+– Calculate the maximum and minimum number of units sold per region 
+max_units = FOREACH sales_by_region GENERATE group AS region, MAX(sales.units) AS max_units; 
+min_units = FOREACH sales_by_region GENERATE group AS region, MIN(sales.units) AS min_units;
+
+– Join the max and min units with the original sales data 
+max_sales = JOIN max_units BY (region, max_units), sales BY (region, units); 
+min_sales = JOIN min_units BY (region, min_units), sales BY (region, units);
+
+– Display the results DUMP max_sales; 
+DUMP min_sales;
+
+– Group the sales by item and rep 
+sales_by_item_rep = GROUP sales BY (item, rep);
+
+– Count the number of unique items sold per rep 
+unique_items = FOREACH sales_by_item_rep GENERATE FLATTEN(group) AS (item, rep), COUNT(sales) AS count;
+
+– Display the results 
+DUMP unique_items;
